@@ -34,8 +34,8 @@
             android:id="@+id/action_dashboardSetFragment_to_dashboardResultFragment"
             app:destination="@id/dashboardResultFragment" />
         <action
-            android:id="@+id/action_dashboardSetFragment_to_navigation_dashboard"
-            app:destination="@id/navigation_dashboard" />
+            android:id="@+id/action_dashboardSetFragment_to_blankFragment"
+            app:destination="@id/blankFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardResultFragment"
@@ -43,7 +43,12 @@
         android:label="fragment_dashboard_result"
         tools:layout="@layout/fragment_dashboard_result" >
         <action
-            android:id="@+id/action_dashboardResultFragment_to_navigation_dashboard"
-            app:destination="@id/navigation_dashboard" />
+            android:id="@+id/action_dashboardResultFragment_to_blankFragment"
+            app:destination="@id/blankFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.example.magiccouchdemo.ui.dashboard.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" />
 </navigation>
