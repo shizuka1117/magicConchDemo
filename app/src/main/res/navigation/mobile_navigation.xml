@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -12,14 +12,38 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.magiccouchdemo.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.magiccouchdemo.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.magiccouchdemo.ui.dashboard.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_dashboardSetFragment"
+            app:destination="@id/dashboardSetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardSetFragment"
+        android:name="com.example.magiccouchdemo.ui.dashboard.DashboardSetFragment"
+        android:label="setChoice"
+        tools:layout="@layout/fragment_dashboard_set" >
+        <action
+            android:id="@+id/action_dashboardSetFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+        <action
+            android:id="@+id/action_dashboardSetFragment_to_dashboardResultFragment"
+            app:destination="@id/dashboardResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardResultFragment"
+        android:name="com.example.magiccouchdemo.ui.dashboard.DashboardResultFragment"
+        android:label="fragment_dashboard_result"
+        tools:layout="@layout/fragment_dashboard_result" >
+        <action
+            android:id="@+id/action_dashboardResultFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+    </fragment>
 </navigation>
