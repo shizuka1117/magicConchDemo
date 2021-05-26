@@ -31,11 +31,11 @@
         android:label="setChoice"
         tools:layout="@layout/fragment_dashboard_set" >
         <action
-            android:id="@+id/action_dashboardSetFragment_to_navigation_dashboard"
-            app:destination="@id/navigation_dashboard" />
-        <action
             android:id="@+id/action_dashboardSetFragment_to_dashboardResultFragment"
             app:destination="@id/dashboardResultFragment" />
+        <action
+            android:id="@+id/action_dashboardSetFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
     </fragment>
     <fragment
         android:id="@+id/dashboardResultFragment"

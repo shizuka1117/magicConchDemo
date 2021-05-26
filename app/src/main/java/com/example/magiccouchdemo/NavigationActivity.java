@@ -1,16 +1,32 @@
 package com.example.magiccouchdemo;
 
 import android.os.Bundle;
+import android.view.View;
 
+import com.example.magiccouchdemo.ui.dashboard.CancelDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class NavigationActivity extends AppCompatActivity {
+public class NavigationActivity extends AppCompatActivity implements CancelDialogFragment.NoticeDialogListener{
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        View v = findViewById(R.id.nav_view);
+        v.setVisibility(View.VISIBLE);
+        NavController controller = Navigation.findNavController(dialog.getParentFragment().getView());
+        //确认提交
+        controller.navigate(R.id.action_dashboardSetFragment_to_navigation_dashboard);
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        dialog.dismiss();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

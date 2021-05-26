@@ -171,13 +171,13 @@
         <SeekBar
             android:id="@+id/seekBar2"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="111dp"
+            android:layout_width="0dp"
             android:layout_height="12dp"
-            android:layout_marginEnd="28dp"
             android:max="100"
             android:progress="50"
             app:layout_constraintBottom_toBottomOf="@+id/textView8"
-            app:layout_constraintEnd_toStartOf="@+id/textView15"
+            app:layout_constraintEnd_toStartOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="@+id/seekBar3"
             app:layout_constraintTop_toTopOf="@+id/textView8" />
 
         <TextView
@@ -197,12 +197,11 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:background="@drawable/edit_background"
             android:hint="50"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/seekBar3"
-            app:layout_constraintStart_toEndOf="@+id/seekBar3"
+            app:layout_constraintStart_toStartOf="@+id/textView10"
             app:layout_constraintTop_toTopOf="@+id/seekBar3"
             tools:text="50" />
 
@@ -210,12 +209,11 @@
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
             android:background="@drawable/edit_background"
             android:hint="50"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/seekBar2"
-            app:layout_constraintStart_toEndOf="@+id/seekBar2"
+            app:layout_constraintStart_toEndOf="@+id/seekBar3"
             app:layout_constraintTop_toTopOf="@+id/seekBar2"
             tools:text="50" />
 
