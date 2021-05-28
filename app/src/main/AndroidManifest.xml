@@ -12,8 +12,10 @@
         <activity
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation">
-
         </activity>
+
+        <activity android:name=".RegisterActivity"></activity>
+
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
