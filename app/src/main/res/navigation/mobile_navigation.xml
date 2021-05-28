@@ -8,8 +8,13 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.magiccouchdemo.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="Common Decision"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_homeSetFragment"
+            app:destination="@id/homeSetFragment" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -51,4 +56,11 @@
         android:name="com.example.magiccouchdemo.ui.dashboard.BlankFragment"
         android:label="fragment_blank"
         tools:layout="@layout/fragment_blank" />
+
+    <fragment
+        android:id="@+id/homeSetFragment"
+        android:name="com.example.magiccouchdemo.ui.home.HomeSetFragment"
+        android:label="设置常用决策"
+        tools:layout="@layout/fragment_home_set"/>
+
 </navigation>

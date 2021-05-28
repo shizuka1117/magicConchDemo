@@ -18,7 +18,11 @@ android {
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
         android.buildFeatures.dataBinding true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        dataBinding{
+            enabled true;
+        }
     }
+
 
     buildTypes {
         release {
