@@ -20,7 +20,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.magiccouchdemo.R;
-import com.example.magiccouchdemo.databinding.FragmentCancelDialogBinding;
 import com.example.magiccouchdemo.ui.notifications.NotificationsViewModel;
 
 
@@ -65,11 +64,5 @@ public class CancelDialogFragment extends DialogFragment {
                     }
                 });
         return builder.create();
-    }
-
-    public void showEditDialog(View view)
-    {
-        CancelDialogFragment dialogFragment = new CancelDialogFragment();
-        dialogFragment.show(getFragmentManager(), "EditNameDialog");
     }
 }
