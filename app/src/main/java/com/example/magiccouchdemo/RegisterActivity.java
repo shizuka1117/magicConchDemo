@@ -20,7 +20,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private ImageView verify_img;//验证码图片
     private EditText verify_txt;//验证码填入框
-    private Button verify_btn,verify_submit;//验证码获取按钮、提交按钮
+    private TextView verify_update;//验证码更新
+    private Button verify_submit;//验证码提交按钮
     private String codeStr;//验证码条
     private CodeUtils codeUtils;//验证码验证类
 
@@ -33,21 +34,26 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void initView() {
         verify_img = (ImageView) findViewById(R.id.verify_img);
+        //获取验证码
+        codeUtils = CodeUtils.getInstance();
+        Bitmap bitmap = codeUtils.createBitmap();
+        verify_img.setImageBitmap(bitmap);
+        //
         verify_txt = (EditText) findViewById(R.id.verify_txt);
-        verify_btn  = (Button) findViewById(R.id.verify_btn);
+        verify_update  = (TextView) findViewById(R.id.verify_update);
         verify_submit = (Button) findViewById(R.id.verify_submit);
-        verify_btn.setOnClickListener((View.OnClickListener) this);
+        verify_update.setOnClickListener((View.OnClickListener) this);
         verify_submit.setOnClickListener((View.OnClickListener) this);
     }
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.verify_btn:
+            case R.id.verify_update:
                 codeUtils = CodeUtils.getInstance();
                 Bitmap bitmap = codeUtils.createBitmap();
                 verify_img.setImageBitmap(bitmap);
-
                 break;
+
             case R.id.verify_submit:
                 codeStr = verify_txt.getText().toString().trim();
                 Log.e("codeStr", codeStr);

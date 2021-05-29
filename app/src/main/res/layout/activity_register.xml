@@ -42,26 +42,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newUserPassword" />
 
-    <Button
-        android:id="@+id/verify_btn"
+    <TextView
+        android:id="@+id/verify_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="308dp"
-        android:text="获取验证码"
+        android:layout_marginBottom="232dp"
+        android:text="看不清楚？换一张"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/verify_txt" />
+        app:layout_constraintHorizontal_bias="0.899"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verify_img"
+        app:layout_constraintVertical_bias="0.325" />
 
     <EditText
         android:id="@+id/verify_txt"
-        android:layout_width="166dp"
-        android:layout_height="49dp"
+        android:layout_width="168dp"
+        android:layout_height="66dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:hint="请输入验证码"
         android:maxLines="1"
+        app:layout_constraintEnd_toStartOf="@+id/verify_img"
+        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newUserPasswordAgain" />
 
@@ -69,11 +72,11 @@
         android:id="@+id/verify_img"
         android:layout_width="162dp"
         android:layout_height="69dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="216dp"
         android:layout_marginTop="20dp"
         android:background="@color/gray"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/verify_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/newUserPasswordAgain" />
 
     <Button
         android:id="@+id/verify_submit"
@@ -85,6 +88,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/verify_img"
-        app:layout_constraintVertical_bias="0.229" />
+        app:layout_constraintVertical_bias="0.534" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
