@@ -33,7 +33,7 @@ public class HomeSetFragment extends Fragment {
         binding.cancelButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CancelDialogFragment dialogFragment1 = new CancelDialogFragment();
+                HomeCancelDialogFragment dialogFragment1 = new HomeCancelDialogFragment();
                 dialogFragment1.show(getFragmentManager(), "EditNameDialog");
             }
         });

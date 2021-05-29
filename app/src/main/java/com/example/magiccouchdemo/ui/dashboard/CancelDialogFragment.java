@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -25,8 +24,8 @@ import com.example.magiccouchdemo.ui.notifications.NotificationsViewModel;
 
 public class CancelDialogFragment extends DialogFragment {
     public interface NoticeDialogListener {
-        public void onDialogPositiveClick(DialogFragment dialog);
-        public void onDialogNegativeClick(DialogFragment dialog);
+        public void onDialogPositiveClick(CancelDialogFragment dialog);
+        public void onDialogNegativeClick(CancelDialogFragment dialog);
     }
 
     // Use this instance of the interface to deliver action events

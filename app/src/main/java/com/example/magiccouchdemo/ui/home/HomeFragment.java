@@ -51,9 +51,12 @@ public class HomeFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, null, false);
         //绑定fragment_home.xml
         binding.setLifecycleOwner(getActivity());
-        binding.fab.setOnClickListener(v -> {
-            NavController controller = Navigation.findNavController(v);
-            controller.navigate(R.id.action_navigation_home_to_homeSetFragment);
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController controller = Navigation.findNavController(v);
+                controller.navigate(R.id.homeSetFragment);
+            }
         });
 
         //ListView
