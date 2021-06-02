@@ -4,9 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.magiccouchdemo.ui.dashboard.CancelDialogFragment;
-import com.example.magiccouchdemo.ui.dashboard.DashboardSetFragment;
-import com.example.magiccouchdemo.ui.home.HomeCancelDialogFragment;
-import com.example.magiccouchdemo.ui.home.HomeSetFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,40 +13,23 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class NavigationActivity extends AppCompatActivity implements CancelDialogFragment.NoticeDialogListener,
-        HomeCancelDialogFragment.NoticeDialogListener {
+public class NavigationActivity extends AppCompatActivity implements CancelDialogFragment.NoticeDialogListener{
     @Override
-    public void onDialogPositiveClick(HomeCancelDialogFragment dialog) {
+    public void onDialogNegativeClick(DialogFragment dialog) {
         View v = findViewById(R.id.nav_view);
         v.setVisibility(View.VISIBLE);
         NavController controller = Navigation.findNavController(dialog.getParentFragment().getView());
-        controller.navigate(R.id.action_homeSetFragment_to_homeFragment);
+        //确认提交
+        controller.navigate(R.id.action_dashboardResultFragment_to_homePage);
     }
 
     @Override
-    public void onDialogPositiveClick(CancelDialogFragment dialog) {
+    public void onDialogPositiveClick(DialogFragment dialog) {
         dialog.dismiss();
     }
 
     @Override
-    public void onDialogNegativeClick(CancelDialogFragment dialog) {
-        View v = findViewById(R.id.nav_view);
-        v.setVisibility(View.VISIBLE);
-        NavController controller = Navigation.findNavController(dialog.getParentFragment().getView());
-        controller.navigate(R.id.blankFragment);
-    }
-
-    @Override
-    public void onDialogNegativeClick(HomeCancelDialogFragment dialog) {
-        View v = findViewById(R.id.nav_view);
-        v.setVisibility(View.VISIBLE);
-        NavController controller = Navigation.findNavController(dialog.getParentFragment().getView());
-        controller.navigate(R.id.action_homeSetFragment_to_homeFragment);
-    }
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigate);
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -63,8 +43,4 @@ public class NavigationActivity extends AppCompatActivity implements CancelDialo
         NavigationUI.setupWithNavController(navView, navController);
     }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 }

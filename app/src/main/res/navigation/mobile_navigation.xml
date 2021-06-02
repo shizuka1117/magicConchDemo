@@ -3,17 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_home">
-
-    <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.magiccouchdemo.ui.home.HomeFragment"
-        android:label="Common Decision"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_navigation_home_to_homeSetFragment"
-            app:destination="@id/homeSetFragment" />
-    </fragment>
+    app:startDestination="@id/homePage">
 
 
     <fragment
@@ -39,8 +29,9 @@
             android:id="@+id/action_dashboardSetFragment_to_dashboardResultFragment"
             app:destination="@id/dashboardResultFragment" />
         <action
-            android:id="@+id/action_dashboardSetFragment_to_blankFragment"
-            app:destination="@id/blankFragment" />
+            android:id="@+id/action_dashboardResultFragment_to_homePage"
+            app:destination="@id/homePage"/>
+
     </fragment>
     <fragment
         android:id="@+id/dashboardResultFragment"
@@ -49,13 +40,22 @@
         tools:layout="@layout/fragment_dashboard_result" >
         <action
             android:id="@+id/action_dashboardResultFragment_to_blankFragment"
-            app:destination="@id/blankFragment" />
+            app:destination="@id/homePage" />
     </fragment>
     <fragment
         android:id="@+id/blankFragment"
         android:name="com.example.magiccouchdemo.ui.dashboard.BlankFragment"
         android:label="fragment_blank"
         tools:layout="@layout/fragment_blank" />
+    <fragment
+        android:id="@+id/homePage"
+        android:name="com.example.magiccouchdemo.ui.home.Home_Page.HomePage"
+        android:label="常用决策"
+        tools:layout="@layout/recycle_view_list1">
+    <action
+        android:id="@+id/homePage_to_homeSetFragment"
+        app:destination="@id/homeSetFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/homeSetFragment"
