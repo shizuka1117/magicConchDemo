@@ -20,7 +20,7 @@ public class NavigationActivity extends AppCompatActivity implements CancelDialo
         v.setVisibility(View.VISIBLE);
         NavController controller = Navigation.findNavController(dialog.getParentFragment().getView());
         //确认提交
-        controller.navigate(R.id.action_dashboardSetFragment_to_blankFragment);
+        controller.navigate(R.id.action_dashboardResultFragment_to_homePage);
     }
 
     @Override
