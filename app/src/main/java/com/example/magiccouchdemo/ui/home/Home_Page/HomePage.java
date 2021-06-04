@@ -36,6 +36,7 @@ public class HomePage extends Fragment {
         for(int i=0;i<6;i++) {
             decisionList evt1 = new decisionList("今晚吃啥？",R.drawable.ic_baseline_label,"吃吃吃");
             DecisionList.add(evt1);
+            Log.d("color", evt1.getImgID()+"");
         }
         for(int i=0;i<5;i++){
             decisionList evt2 = new decisionList("聚餐去哪里？",R.drawable.ic_baseline_label,"乐乐乐");

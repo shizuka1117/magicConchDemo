@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="Snow">#CBB8ED</color>
+    <color name="GhostWhite">#FFEB3B</color>
+    <color name="WhiteSmoke">#F5F5F5</color>
+    <color name="Gainsboro">#DCDCDC</color>
+    <color name="FloralWhite">#FFFAF0</color>
+    <color name="OldLace">#FDF5E6</color>
+    <color name="Cornsilk">#FFF8DC</color>
+    <color name="Bisque">#FFE4C4</color>
+    <color name="PeachPuff">#FFDAB9</color>
+    <color name="LightGoldenrodYellow">#FBFBAE</color>
+    <color name="Ivory">#FFFFF0</color>
+    <color name="Seashell">#FFF5EE</color>
+    <color name="Honeydew">#F0FFF0</color>
+    <color name="lavender">#E6E6FA</color>
+    <color name="LavenderBlush">#FFF0F5</color>
+    <color name="MistyRose">#FFE4E1</color>
+    <color name="LightSteelBlue1">#CAE1FF</color>
+    <color name="LightBlue1">#BFEFFF</color>
+    <color name="Blue">#BAE3F1</color>
+    <color name="Pink">#EDCECE</color>
+    <color name="Purple">#D0B9EA</color>
+    <color name="Yellow">#F6EA80</color>
+    <color name="Grey">#E6C1C1</color>
+    <color name="Orange">#F4CDA4</color>
+    <color name="Green">#D0F8B4</color>
+
+</resources>
