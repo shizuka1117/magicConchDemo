@@ -1,14 +1,25 @@
 package com.example.magiccouchdemo.ui.home;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.Calendar;
 
+@Entity
 public class Option {
-
+    @PrimaryKey(autoGenerate = true)
+    int id;
     String optionName;
     int value;
     int times;
     private Calendar date;
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public int getTimes() {
         return times;
     }
@@ -41,6 +52,7 @@ public class Option {
         this.optionName = optionName;
         this.value = value;
     }
+
     public void addValue(int i){
         value+=i;
         if(value>10)
