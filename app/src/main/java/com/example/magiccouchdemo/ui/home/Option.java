@@ -7,9 +7,13 @@ public class Option {
     String optionName;
     int value;
     private Calendar date;
+    private int times;
 
     public Option (){
 
+    }
+    public Option (String optionName){
+        this.optionName = optionName;
     }
     public Option(String optionName, int value) {
         this.optionName = optionName;
@@ -42,5 +46,13 @@ public class Option {
     }
     public void setDate(Calendar date) {
         this.date = date;
+    }
+
+    public int getTimes() {
+        return times;
+    }
+
+    public void setTimes(int times) {
+        this.times = times;
     }
 }

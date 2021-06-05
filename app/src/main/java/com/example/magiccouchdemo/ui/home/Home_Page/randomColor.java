@@ -8,7 +8,7 @@ import java.util.List;
 public class randomColor {
     List<Integer> colors;//= new ArrayList<>();
 
-    randomColor(){
+    public randomColor(){
         colors = new ArrayList<>();
     }
 

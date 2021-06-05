@@ -47,6 +47,14 @@
     <fragment
         android:id="@+id/boxFragment"
         android:name="com.example.magiccouchdemo.ui.dashboard.BoxFragment"
-        android:label="BoxFragment" />
+        android:label="BoxFragment" >
+        <action
+            android:id="@+id/action_boxFragment_to_restFragment"
+            app:destination="@id/restFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/restFragment"
+        android:name="com.example.magiccouchdemo.ui.dashboard.RestFragment"
+        android:label="RestFragment" />
 
 </navigation>
