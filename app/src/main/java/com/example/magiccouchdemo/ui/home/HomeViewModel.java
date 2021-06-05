@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel;
 
 public class HomeViewModel extends ViewModel {
     public ObservableArrayList<Option> mList = new ObservableArrayList<>();
-    private MutableLiveData<String> decName;
-    private MutableLiveData<String> tag;
+    private MutableLiveData<String> decName = new MutableLiveData<>();
+    private MutableLiveData<String> tag = new MutableLiveData<>();
     private String result;
 
     public HomeViewModel() {

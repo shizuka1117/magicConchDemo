@@ -1,8 +1,10 @@
 package com.example.magiccouchdemo.ui.home.Home_Page;
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ObservableArrayList;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -16,6 +18,7 @@ import android.view.ViewGroup;
 import com.example.magiccouchdemo.R;
 import com.example.magiccouchdemo.databinding.FragmentHomeResultBinding;
 import com.example.magiccouchdemo.ui.home.HomeViewModel;
+import com.example.magiccouchdemo.ui.home.Option;
 
 
 public class HomeResultFragment extends Fragment {

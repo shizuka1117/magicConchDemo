@@ -3,12 +3,14 @@ package com.example.magiccouchdemo.ui.home.Home_Page;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ObservableArrayList;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +36,7 @@ public class HomeSetFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_home_set, container, false);
         binding.setLifecycleOwner(getActivity());
+        ObservableArrayList<Option> options = homeViewModel.getmList();
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.addOption.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,29 +47,30 @@ public class HomeSetFragment extends Fragment {
             }
         });
         adapter = new OptionAdapter(getContext());
-        homeViewModel.setmList(adapter.getItems());
         binding.recyclerView.setAdapter(adapter);
         binding.nextButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String result = adapter.computeResult();
-                homeViewModel.setResult(result);
-                if(homeViewModel.getDecName().getValue()==null){
+                if(TextUtils.isEmpty(binding.decTitle.getText())){
                     Toast.makeText(v.getContext(), "决策主题不能为空！", Toast.LENGTH_SHORT).show();
                 }
-                else if(homeViewModel.getmList()==null){
+                else if(adapter.getItems().size()==0){
                     Toast.makeText(v.getContext(), "还没有添加任何选项！", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    String result = adapter.computeResult();
+                    homeViewModel.getDecName();
+                    homeViewModel.setmList(adapter.getItems());
+                    homeViewModel.setResult(result);
                     NavController controller = Navigation.findNavController(v);
                     //确认提交
                     controller.navigate(R.id.action_HomeSetFragment_to_HomeResultFragment);
                 }
             }
         });
-        adapter.getItems().add(new Option("张三", 18));
-        adapter.getItems().add(new Option("李四", 28));
-        adapter.getItems().add(new Option("王五", 38));
+        adapter.getItems().add(new Option("张三", 5));
+        adapter.getItems().add(new Option("李四", 5));
+        adapter.getItems().add(new Option("王五", 5));
         return binding.getRoot();
     }
 
