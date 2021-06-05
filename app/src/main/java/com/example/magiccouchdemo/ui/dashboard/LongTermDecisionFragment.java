@@ -10,16 +10,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccouchdemo.R;
+import com.example.magiccouchdemo.ui.home.Home_Page.decisionList;
 import com.example.magiccouchdemo.ui.home.Option;
 
 import java.util.ArrayList;
 
-public class RestFragment extends Fragment {
+public class LongTermDecisionFragment extends Fragment {
     private RecyclerView Rv;
-    private ArrayList<Option> restOptions;
-    private RestChoiceAdapter myAdapter;
+    private ArrayList<decisionList> lists;
+    private LongTermDecisionAdapter myAdapter;
 
-    public RestFragment(){
+    public LongTermDecisionFragment(){
 
     }
 
@@ -27,9 +28,9 @@ public class RestFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-        View view = inflater.inflate(R.layout.fragment_rest_choice, container, false);
+        View view = inflater.inflate(R.layout.recycle_view_list2, container, false);
 
-        Rv = (RecyclerView)view.findViewById(R.id.rest_choices_recycler_view);
+        Rv = (RecyclerView)view.findViewById(R.id.recycle_view2);
 
         // 初始化显示的数据
         initData();
@@ -40,7 +41,7 @@ public class RestFragment extends Fragment {
         Rv.setHasFixedSize(true);
 
         //为ListView绑定适配器
-        myAdapter = new RestChoiceAdapter(restOptions);
+        myAdapter = new LongTermDecisionAdapter(lists);
         Rv.setAdapter(myAdapter);
 
         return view;
@@ -49,19 +50,20 @@ public class RestFragment extends Fragment {
 
 
     private void initData() {
-        restOptions = new ArrayList<Option>();/*在数组中存放数据*/
+        lists = new ArrayList<decisionList>();/*在数组中存放数据*/
 
-        Option item1 = new Option("一起去济南吧");
-        restOptions.add(item1);
+        decisionList item1 = new decisionList("这个学期要读完的15本书");
+        lists.add(item1);
 
-        Option item2 = new Option("苏州gogogo");
-        restOptions.add(item2);
+        decisionList item2 = new decisionList("今年要去的十个旅行地");
+        lists.add(item2);
 
-        Option item3 = new Option("去大理看云海");
-        restOptions.add(item3);
+        decisionList item3 = new decisionList("和ta在一起要做的事");
+        lists.add(item3);
 
-        Option item4 = new Option("西藏西藏！");
-        restOptions.add(item4);
+        decisionList item4 = new decisionList("给自己的奖励吃吃吃");
+        lists.add(item4);
 
     }
+
 }

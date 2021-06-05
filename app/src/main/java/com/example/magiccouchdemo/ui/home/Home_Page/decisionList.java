@@ -9,10 +9,18 @@ public class decisionList {
     private String tag;
 
 
+    public decisionList(){
+
+    }
+
     public decisionList(String name, int id, String tag) {
         this.name = name;
         this.imgID = id;
         this.tag = tag;
+    }
+
+    public decisionList(String name){
+        this.name = name;
     }
     
 

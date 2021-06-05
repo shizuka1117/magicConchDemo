@@ -1,20 +1,16 @@
 package com.example.magiccouchdemo.ui.dashboard;
 
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccouchdemo.R;
-import com.example.magiccouchdemo.ui.home.Home_Page.decisionList;
-import com.example.magiccouchdemo.ui.home.Home_Page.decisionRecycleAdapter;
 import com.example.magiccouchdemo.ui.home.Home_Page.randomColor;
 import com.example.magiccouchdemo.ui.home.Option;
 
