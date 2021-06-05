@@ -25,7 +25,8 @@ xmlns:binding="http://schemas.android.com/tools">
             android:id="@+id/recycle_view1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+            binding:layout_editor_absoluteX="0dp"
+            binding:layout_editor_absoluteY="0dp" />
 
         ></androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,5 +1,7 @@
 package com.example.magiccouchdemo.ui.home.Home_Page;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccouchdemo.R;
@@ -16,6 +19,7 @@ import com.example.magiccouchdemo.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycleAdapter.ViewHolder> {
 
@@ -29,7 +33,7 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
 
     //内部ViewHolder类
     static class ViewHolder extends RecyclerView.ViewHolder {
-        View listView;
+        CardView listView;
         TextView event_name;
         ImageView img_id;
         TextView event_tag;
@@ -38,14 +42,22 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
          * 设置CardView随机颜色,试了一下，好丑....再改
          */
 
-        /**
-        Random myRandom = new Random();
-        int ranColor = 0xff000000 | myRandom.nextInt(0x00ffffff);
-         */
+        randomColor rand = new randomColor();//随机颜色类
+
+        Random random = new Random();//随机类
+        List<Integer> color_list = rand.getColor();//返回一个color list
+
+        Integer r = random.nextInt(rand.getColor().size());//获取随机下标
+        Integer ranColor = color_list.get(r);
+
+        @SuppressLint("ResourceAsColor")
         public ViewHolder(View itemView) {
             super(itemView);
-            listView = itemView;
-            //listView.setBackgroundColor(ranColor);
+
+            //setBackgroundcolor 无效？但是不能直接setBackgroundcolor(int color)
+            listView = (CardView) itemView;
+            listView.setCardBackgroundColor(Color.parseColor("#"+ranColor.toString()));
+
             event_name = (TextView) itemView.findViewById(R.id.event_name);
             img_id = (ImageView)itemView.findViewById(R.id.tag_img);
             event_tag = (TextView) itemView.findViewById(R.id.event_tag);
@@ -102,4 +114,6 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
     public int getItemCount() {
         return dataList.size();
     }
+
+
 }
