@@ -16,7 +16,7 @@
             android:id="@+id/rest_choices"
             android:layout_width="411dp"
             android:layout_height="193dp"
-            android:background="@color/white"
+            android:background="?selectableItemBackground"
             android:clickable="true"
             android:src="@drawable/couch"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -17,6 +17,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccouchdemo.R;
+import com.example.magiccouchdemo.dataBase.Theme;
 import com.example.magiccouchdemo.ui.home.Home_Page.decisionList;
 import com.example.magiccouchdemo.ui.home.Home_Page.decisionRecycleAdapter;
 import com.example.magiccouchdemo.ui.home.Home_Page.randomColor;
@@ -27,13 +28,18 @@ import java.util.Random;
 
 public class LongTermDecisionAdapter extends RecyclerView.Adapter<LongTermDecisionAdapter.ViewHolder> {
 
-    private List<decisionList> dataList = new ArrayList<>();
+    private List<Theme> dataList = new ArrayList<>();
     //EventViewBinding binding;
 
-    public LongTermDecisionAdapter(List<decisionList> dataList){
+    //for binding database
+    public void setDataList(List<Theme> dataList) {
+        this.dataList = dataList;
+    }
+
+    /*public LongTermDecisionAdapter(List<decisionList> dataList){
         this.dataList=dataList;
         Log.d("execute","111");
-    }
+    }*/
 
     //内部ViewHolder类
     static class ViewHolder extends RecyclerView.ViewHolder {

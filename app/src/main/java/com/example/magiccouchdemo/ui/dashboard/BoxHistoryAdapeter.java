@@ -10,7 +10,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccouchdemo.R;
-import com.example.magiccouchdemo.ui.home.Home_Page.decisionList;
 import com.example.magiccouchdemo.ui.home.Option;
 
 import java.util.ArrayList;
