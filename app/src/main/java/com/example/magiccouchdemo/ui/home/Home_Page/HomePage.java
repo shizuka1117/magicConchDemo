@@ -81,39 +81,50 @@ public class HomePage extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         binding.recycleView1.setLayoutManager(layoutManager);
 
-
         setOnListViewClickListener();
 
         /**
          * 对底层的editbar添加监听事件
          */
-        binding.getRoot().setOnClickListener(new View.OnClickListener() {
+
+        binding.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.cancel:
-                        cancel();
-                        break;
-                    case R.id.delete:
-                        delete();
-                        break;
-                    case R.id.selectAll:
-                        selectAll();
-                        break;
-                }
+                cancel();
+                Log.d("msg","You canceled");
+
+            }
+        });
+
+        binding.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete();
+            }
+        });
+
+        binding.selectAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectAll();
             }
         });
         return binding.getRoot();
     }
 
 
+
     private void initView() {
-
-
        // recyclerView.setChoiceMode(RecyclerView.CHOICE_MODE_MULTIPLE);
         EditBar = binding.editBar;
         //绑定监听事件
-
+        binding.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancel();
+                Log.d("msg","You canceled");
+            }
+        });
     }
 
     /**
@@ -126,18 +137,15 @@ public class HomePage extends Fragment {
         adapter.setOnItemClickListener(new decisionRecycleAdapter.onItemClickListener() {
             @Override
             public void onItemClick(CardView view, int position) {
-                //Toast.makeText(getActivity(),"onClick"+position,Toast.LENGTH_SHORT).show();
-                EditBar.setVisibility(View.VISIBLE);
-                Log.d("msg","see");
-                adapter.setShowCheckBox(true);//CheckBox的那个方框显示
-                updateCheckBoxStatus(view, position);
+                Toast.makeText(getActivity(),"onClick"+position,Toast.LENGTH_SHORT).show();
+                //跳转到对应的编辑界面！
             }
 
             @Override
             public void onItemLongClick(CardView view, int position) {
-                //Toast.makeText(getActivity(),"onLongClick"+position,Toast.LENGTH_SHORT).show();
+                getActivity().findViewById(R.id.nav_view).setVisibility(View.INVISIBLE);
                 EditBar.setVisibility(View.VISIBLE);
-                Log.d("msg","see");
+                Log.d("msg","choose to delete");
                 adapter.setShowCheckBox(true);//CheckBox的那个方框显示
                 updateCheckBoxStatus(view, position);
             }
@@ -168,8 +176,6 @@ public class HomePage extends Fragment {
          *
          *         mData应该对应的是decisionList
           */
-
-
     }
 
 
@@ -213,7 +219,9 @@ public class HomePage extends Fragment {
     private void cancel() {
         setStateCheckedMap(false);//将CheckBox的所有选中状态变成未选中
         EditBar.setVisibility(View.GONE);//隐藏下方布局
+        getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);//显示导航栏
         adapter.setShowCheckBox(false);//让CheckBox那个方框隐藏
+        Log.d("msg","You canceled");
         adapter.notifyDataSetChanged();//更新ListView
     }
 
@@ -268,7 +276,8 @@ public class HomePage extends Fragment {
     private void selectAll() {
         mCheckedData.clear();//清空之前选中数据
         if (isSelectedAll) {
-            setStateCheckedMap(true);//将CheckBox的所有选中状态变成选中
+
+            setStateCheckedMap(true);//将CheckBox的所有状态变成选中
             isSelectedAll = false;
          //   mCheckedData.addAll(mData);//把所有的数据添加到选中列表中
         } else {
@@ -282,13 +291,11 @@ public class HomePage extends Fragment {
      * 设置所有CheckBox的选中状态
      * */
     private void setStateCheckedMap(boolean isSelectedAll) {
-        /**
-         * for (int i = 0; i < mData.size(); i++) {
-         *             stateCheckedMap.put(i, isSelectedAll);
-         *             adapter.setItemChecked(i, isSelectedAll);
-         *         }
-          */
 
+        for (int i = 0; i < DecisionList.size(); i++) {
+            stateCheckedMap.put(i, isSelectedAll);
+            adapter.setItemChecked(i, isSelectedAll);
+        }
     }
 
 }

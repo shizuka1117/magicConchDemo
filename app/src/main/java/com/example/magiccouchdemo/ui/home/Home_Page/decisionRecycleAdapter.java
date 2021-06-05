@@ -39,7 +39,7 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
 
     public interface  onItemClickListener{
         void onItemClick(CardView view, int position);
-        void  onItemLongClick(CardView view, int position);
+        void onItemLongClick(CardView view, int position);
     }
     //定义了当长按视图中的项目时调用的回调函数的接口。
     private onItemClickListener onItemClickListener;
@@ -91,34 +91,18 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
         ViewHolder holder = new ViewHolder(view);
         final ViewHolder holder1 = new ViewHolder(view);
 
-        //单击
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int layoutPos=holder.getLayoutPosition();
-                onItemClickListener.onItemClick(holder.cardView,layoutPos);
-            }
-        });
+/**
+ * holder.event_name.setOnClickListener(new View.OnClickListener() {
+ *             @Override
+ *             public void onClick(View v) {
+ *                 int position = holder.getAdapterPosition()+1;
+ *                 decisionList decision = dataList.get(position);
+ *                 Toast.makeText(v.getContext(), "you clicked Event :" + decision.getName(), Toast.LENGTH_SHORT).show();
+ *             }
+ *         });
+ *         Log.d("View Count", "11111111");
+ */
 
-        //长按
-        holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                int layoutPos=holder.getLayoutPosition();
-                onItemClickListener.onItemClick(holder.cardView,layoutPos);
-                return false;
-            }
-        });
-
-        holder.event_name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int position = holder.getAdapterPosition()+1;
-                decisionList decision = dataList.get(position);
-                Toast.makeText(v.getContext(), "you clicked Event :" + decision.getName(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        Log.d("View Count", "11111111");
         return holder;
     }
 
@@ -130,6 +114,24 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+        if(onItemClickListener!=null){
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int layoutPos=holder.getLayoutPosition();
+                    onItemClickListener.onItemClick(holder.cardView,layoutPos);
+
+                }
+            });
+            holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int layoutPos=holder.getLayoutPosition();
+                    onItemClickListener.onItemLongClick(holder.cardView,layoutPos);
+                    return false;
+                }
+            });
+        }
         //判断是否选中
         boolean itemChecked = isItemChecked(position);
 
