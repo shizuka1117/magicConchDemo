@@ -37,6 +37,7 @@ public class HomeResultFragment extends Fragment {
                 NavController controller = Navigation.findNavController(v);
             }
         });
+
         return binding.getRoot();
     }
 }

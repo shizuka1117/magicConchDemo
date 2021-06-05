@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_dashboardResultFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_HomeResultFragment_to_boxFragment"
+            app:destination="@id/boxFragment" />
     </fragment>
 
     <fragment
@@ -41,5 +44,9 @@
             app:destination="@id/HomeSetFragment" />
     </fragment>
     <fragment android:id="@+id/placeholder" />
+    <fragment
+        android:id="@+id/boxFragment"
+        android:name="com.example.magiccouchdemo.ui.dashboard.BoxFragment"
+        android:label="BoxFragment" />
 
 </navigation>
