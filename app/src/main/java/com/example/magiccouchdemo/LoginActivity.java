@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.magiccouchdemo.ui.dashboard.DashboardFragment;
-
 public class LoginActivity extends AppCompatActivity {
 
     private TextView skip_txt;

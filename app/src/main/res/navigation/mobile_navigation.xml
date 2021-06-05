@@ -3,73 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/homePage">
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.magiccouchdemo.ui.home.HomeFragment"
+        android:label="Common Decision"
+        tools:layout="@layout/recycle_view_list1"/>
 
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.magiccouchdemo.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.magiccouchdemo.ui.dashboard.DashboardFragment"
-        android:label="Dashboard"
-        tools:layout="@layout/fragment_dashboard" >
-        <action
-            android:id="@+id/action_navigation_dashboard_to_dashboardSetFragment"
-            app:destination="@id/dashboardSetFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/dashboardSetFragment"
-        android:name="com.example.magiccouchdemo.ui.dashboard.DashboardSetFragment"
+        android:id="@+id/HomeSetFragment"
+        android:name="com.example.magiccouchdemo.ui.home.Home_Page.HomeSetFragment"
         android:label="setChoice"
-        tools:layout="@layout/fragment_dashboard_set" >
+        tools:layout="@layout/fragment_home_set" >
         <action
-            android:id="@+id/action_dashboardSetFragment_to_dashboardResultFragment"
-            app:destination="@id/dashboardResultFragment" />
-        <action
-            android:id="@+id/action_dashboardResultFragment_to_homePage"
-            app:destination="@id/homePage"/>
-
+            android:id="@+id/action_HomeSetFragment_to_HomeResultFragment"
+            app:destination="@id/HomeResultFragment" />
     </fragment>
     <fragment
-        android:id="@+id/dashboardResultFragment"
-        android:name="com.example.magiccouchdemo.ui.dashboard.DashboardResultFragment"
+        android:id="@+id/HomeResultFragment"
+        android:name="com.example.magiccouchdemo.ui.home.Home_Page.HomeResultFragment"
         android:label="fragment_dashboard_result"
-        tools:layout="@layout/fragment_dashboard_result" >
+        tools:layout="@layout/fragment_home_result" >
         <action
-            android:id="@+id/action_dashboardResultFragment_to_blankFragment"
-            app:destination="@id/homePage" />
-    </fragment>
-    <fragment
-        android:id="@+id/blankFragment"
-        android:name="com.example.magiccouchdemo.ui.dashboard.BlankFragment"
-        android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" />
-    <fragment
-        android:id="@+id/homePage"
-        android:name="com.example.magiccouchdemo.ui.home.Home_Page.HomePage"
-        android:label="常用决策"
-        tools:layout="@layout/recycle_view_list1">
-    <action
-        android:id="@+id/homePage_to_homeSetFragment"
-        app:destination="@id/homeSetFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/homeSetFragment"
-        android:name="com.example.magiccouchdemo.ui.home.HomeSetFragment"
-        android:label="设置常用决策"
-        tools:layout="@layout/fragment_home_set">
-        <action
-            android:id="@+id/action_homeSetFragment_to_homeFragment"
+            android:id="@+id/action_dashboardResultFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.magiccouchdemo.ui.home.HomeFragment"
+        android:name="com.example.magiccouchdemo.ui.home.Home_Page.HomePage"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/recycle_view_list1" >
+        <action
+            android:id="@+id/action_homeFragment_to_homeSetFragment"
+            app:destination="@id/HomeSetFragment" />
+    </fragment>
+    <fragment android:id="@+id/placeholder" />
 
 </navigation>

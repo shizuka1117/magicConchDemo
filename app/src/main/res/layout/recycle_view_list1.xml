@@ -5,7 +5,8 @@ xmlns:binding="http://schemas.android.com/tools">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab1"
@@ -18,7 +19,7 @@ xmlns:binding="http://schemas.android.com/tools">
             app:srcCompat="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-             />
+                />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_view1"

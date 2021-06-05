@@ -2,11 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="model"
+            type="com.example.magiccouchdemo.ui.home.HomeViewModel" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardResultFragment">
+    tools:context=".ui.home.Home_Page.HomeResultFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -20,11 +25,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="98dp"
         android:hint="结果"
+        android:text="@={model.result}"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

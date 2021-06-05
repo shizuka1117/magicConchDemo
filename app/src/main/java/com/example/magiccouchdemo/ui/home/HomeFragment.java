@@ -32,7 +32,6 @@ import androidx.navigation.Navigation;
 
 import com.example.magiccouchdemo.R;
 import com.example.magiccouchdemo.databinding.FragmentDashboardBinding;
-import com.example.magiccouchdemo.databinding.FragmentDashboardSetBinding;
 import com.example.magiccouchdemo.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
@@ -129,6 +128,9 @@ public class HomeFragment extends Fragment {
             ComDec evt1 = new ComDec("What's to eat tonight", "Eating");
             ComDecList.add(evt1);
         }
+        ComDec evt2 = new ComDec("What's to buy", "Shopping");
+        ComDecList.add(evt2);
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -140,7 +142,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 NavController controller = Navigation.findNavController(v);
-                controller.navigate(R.id.homeSetFragment);
+                controller.navigate(R.id.action_homeFragment_to_homeSetFragment);
             }
         });
 
