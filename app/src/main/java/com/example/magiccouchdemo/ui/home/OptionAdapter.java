@@ -65,6 +65,18 @@ public class OptionAdapter extends BaseBindingAdapter<Option, OptionItemBinding>
                 notifyDataSetChanged();
             }
         });
+        binding.addValue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.getOption().addValue(1);
+            }
+        });
+        binding.minusValue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.getOption().addValue(-1);
+            }
+        });
         return new BaseBindingViewHolder(binding.getRoot());
     }
 }

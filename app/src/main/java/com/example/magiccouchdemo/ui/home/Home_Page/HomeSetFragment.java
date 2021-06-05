@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.magiccouchdemo.R;
 import com.example.magiccouchdemo.databinding.FragmentHomeSetBinding;
@@ -38,7 +39,7 @@ public class HomeSetFragment extends Fragment {
                 R.layout.fragment_home_set, container, false);
         binding.setLifecycleOwner(getActivity());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.fab2.setOnClickListener(new View.OnClickListener() {
+        binding.addOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Option option = new Option("", 0);
@@ -47,17 +48,24 @@ public class HomeSetFragment extends Fragment {
             }
         });
         adapter = new OptionAdapter(getContext());
-
+        homeViewModel.setmList(adapter.getItems());
         binding.recyclerView.setAdapter(adapter);
         binding.nextButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 String result = adapter.computeResult();
-                homeViewModel.setmList(adapter.getItems());
                 homeViewModel.setResult(result);
-                NavController controller = Navigation.findNavController(v);
-                //确认提交
-                controller.navigate(R.id.action_HomeSetFragment_to_HomeResultFragment);
+                if(homeViewModel.getDecName().getValue()==null){
+                    Toast.makeText(v.getContext(), "决策主题不能为空！", Toast.LENGTH_SHORT).show();
+                }
+                else if(homeViewModel.getmList()==null){
+                    Toast.makeText(v.getContext(), "还没有添加任何选项！", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    NavController controller = Navigation.findNavController(v);
+                    //确认提交
+                    controller.navigate(R.id.action_HomeSetFragment_to_HomeResultFragment);
+                }
             }
         });
         adapter.getItems().add(new Option("张三", 18));

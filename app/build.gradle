@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
-        android.buildFeatures.dataBinding true
+        android.buildFeatures.dataBinding = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         dataBinding{
             enabled true;

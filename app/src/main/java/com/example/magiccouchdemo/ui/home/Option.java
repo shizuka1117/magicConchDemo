@@ -13,6 +13,14 @@ public class Option {
         this.optionName = optionName;
         this.value = value;
     }
+    public void addValue(int i){
+        value+=i;
+        if(value>10)
+            value=10;
+        else if(value<0)
+            value=0;
+    }
+
 
     public String getOptionName() {
         return optionName;

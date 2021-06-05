@@ -12,6 +12,7 @@ xmlns:tools="http://schemas.android.com/tools">
         android:layout_width="match_parent"
         android:layout_height="602dp"
         tools:context=".ui.dashboard.HomeSetFragment">
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/nextButton"
             android:layout_width="wrap_content"
@@ -21,10 +22,10 @@ xmlns:tools="http://schemas.android.com/tools">
             android:text="Next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_baseline_arrow_forward_24"/>
+            app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab2"
+            android:id="@+id/add_option"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="308dp"
@@ -37,8 +38,8 @@ xmlns:tools="http://schemas.android.com/tools">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="411dp"
-            android:layout_height="447dp"
+            android:layout_width="489dp"
+            android:layout_height="394dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -68,6 +69,29 @@ xmlns:tools="http://schemas.android.com/tools">
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="20dp"
+            android:text="选项"
+            android:textSize="28dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="倾向值"
+            android:textSize="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.716"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/dec_tag" />
+
         <EditText
             android:id="@+id/dec_title"
             android:layout_width="250dp"
@@ -75,8 +99,8 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_marginEnd="10dp"
             android:ems="10"
             android:hint="例：今天吃什么"
-            android:text="@={model.decName}"
             android:inputType="textPersonName"
+            android:text="@={model.decName}"
             app:layout_constraintBottom_toBottomOf="@+id/textView18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView18"
@@ -90,8 +114,8 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_marginEnd="10dp"
             android:ems="10"
             android:hint="例：今天吃什么"
-            android:text="@={model.tag}"
             android:inputType="textPersonName"
+            android:text="@={model.tag}"
             app:layout_constraintBottom_toBottomOf="@+id/textView19"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView19"
