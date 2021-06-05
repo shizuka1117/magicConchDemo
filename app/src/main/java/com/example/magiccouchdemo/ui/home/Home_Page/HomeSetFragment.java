@@ -47,7 +47,10 @@ public class HomeSetFragment extends Fragment {
             }
         });
         adapter = new OptionAdapter(getContext());
+        binding.setModel(homeViewModel);
         binding.recyclerView.setAdapter(adapter);
+        binding.nextButton.bringToFront();
+        binding.addOption.bringToFront();
         binding.nextButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -58,7 +61,7 @@ public class HomeSetFragment extends Fragment {
                     Toast.makeText(v.getContext(), "还没有添加任何选项！", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    String result = adapter.computeResult();
+                    String result = adapter.computeResult(1);
                     homeViewModel.getDecName();
                     homeViewModel.setmList(adapter.getItems());
                     homeViewModel.setResult(result);

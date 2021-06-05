@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/placeholder"
+        android:id="@+id/longTermFragment"
         android:icon="@drawable/ic_baseline_format_list_bulleted_24"
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/shortTermFragment"
         android:icon="@drawable/ic_baseline_add_circle_outline_24"
         android:title="@string/title_dashboard" />
 

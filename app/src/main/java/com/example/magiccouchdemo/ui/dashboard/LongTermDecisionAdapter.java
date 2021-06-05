@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccouchdemo.R;
@@ -78,9 +80,8 @@ public class LongTermDecisionAdapter extends RecyclerView.Adapter<LongTermDecisi
         holder.event_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int position = holder1.getAdapterPosition()+1;
-                decisionList decision = dataList.get(position);
-                Toast.makeText(v.getContext(), "you clicked Event :" + decision.getName(), Toast.LENGTH_SHORT).show();
+                NavController controller = Navigation.findNavController(v);
+                controller.navigate(R.id.action_longTermFragment_to_boxFragment);
             }
         });
         Log.d("View Count", "11111111");
