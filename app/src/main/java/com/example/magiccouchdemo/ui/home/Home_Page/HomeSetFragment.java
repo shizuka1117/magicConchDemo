@@ -38,7 +38,16 @@ public class HomeSetFragment extends Fragment {
                 R.layout.fragment_home_set, container, false);
         binding.setLifecycleOwner(getActivity());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Option option = new Option("", 0);
+                adapter.addData(adapter.getItemCount(), option);
+                binding.recyclerView.scrollToPosition(adapter.getItemCount()-1);
+            }
+        });
         adapter = new OptionAdapter(getContext());
+
         binding.recyclerView.setAdapter(adapter);
         binding.nextButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -46,8 +55,6 @@ public class HomeSetFragment extends Fragment {
                 String result = adapter.computeResult();
                 homeViewModel.setmList(adapter.getItems());
                 homeViewModel.setResult(result);
-                Log.d("onclick", homeViewModel.getmList().get(0).getOptionName());
-                Log.d("result:", homeViewModel.getResult());
                 NavController controller = Navigation.findNavController(v);
                 //确认提交
                 controller.navigate(R.id.action_HomeSetFragment_to_HomeResultFragment);

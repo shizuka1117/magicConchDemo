@@ -5,6 +5,10 @@ public class Option {
     String optionName;
     int value;
 
+    public Option(){
+
+    }
+
     public Option(String optionName, int value) {
         this.optionName = optionName;
         this.value = value;

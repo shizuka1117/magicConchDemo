@@ -19,7 +19,7 @@ xmlns:binding="http://schemas.android.com/tools">
             app:srcCompat="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-                />
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_view1"

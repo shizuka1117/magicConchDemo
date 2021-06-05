@@ -11,4 +11,6 @@ public class BaseBindingViewHolder extends RecyclerView.ViewHolder
     public BaseBindingViewHolder(@NonNull View itemView) {
         super(itemView);
     }
+
+
 }

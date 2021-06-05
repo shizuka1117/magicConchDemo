@@ -35,6 +35,7 @@ public class HomeResultFragment extends Fragment {
             public void onClick(View v) {
                 getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);
                 NavController controller = Navigation.findNavController(v);
+                controller.navigate(R.id.homeFragment);
             }
         });
         return binding.getRoot();

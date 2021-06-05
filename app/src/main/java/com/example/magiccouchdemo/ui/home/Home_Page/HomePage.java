@@ -54,6 +54,7 @@ public class HomePage extends Fragment {
         //点击加号 跳转
         binding.fab1.setOnClickListener(v -> {
             NavController controller = Navigation.findNavController(v);
+            getActivity().findViewById(R.id.nav_view).setVisibility(View.INVISIBLE);
             controller.navigate(R.id.action_homeFragment_to_homeSetFragment);
         });
 
