@@ -5,7 +5,6 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/homeFragment">
 
-
     <fragment
         android:id="@+id/HomeSetFragment"
         android:name="com.example.magiccouchdemo.ui.home.Home_Page.HomeSetFragment"
@@ -23,21 +22,17 @@
         <action
             android:id="@+id/action_dashboardResultFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_HomeResultFragment_to_boxFragment"
-            app:destination="@id/boxFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/shortTermFragment"
         android:name="com.example.magiccouchdemo.ui.home.Home_Page.HomePage"
-        android:label="常用决策"
+        android:label=""
         tools:layout="@layout/recycle_view_list1" >
         <action
             android:id="@+id/action_homeFragment_to_homeSetFragment"
             app:destination="@id/HomeSetFragment" />
     </fragment>
-    <fragment android:id="@+id/placeholder" />
     <fragment
         android:id="@+id/boxFragment"
         android:name="com.example.magiccouchdemo.ui.dashboard.BoxFragment"
@@ -50,5 +45,13 @@
         android:id="@+id/restFragment"
         android:name="com.example.magiccouchdemo.ui.dashboard.RestFragment"
         android:label="RestFragment" />
+    <fragment
+        android:id="@+id/longTermFragment"
+        android:name="com.example.magiccouchdemo.ui.dashboard.LongTermDecisionFragment"
+        android:label="LongTermDecisionFragment" >
+        <action
+            android:id="@+id/action_longTermFragment_to_boxFragment"
+            app:destination="@id/boxFragment" />
+    </fragment>
 
 </navigation>

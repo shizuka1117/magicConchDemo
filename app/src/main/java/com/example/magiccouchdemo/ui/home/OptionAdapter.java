@@ -1,6 +1,7 @@
 package com.example.magiccouchdemo.ui.home;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import com.example.magiccouchdemo.databinding.OptionItemBinding;
 import com.example.magiccouchdemo.ui.home.Home_Page.decisionList;
 import com.example.magiccouchdemo.ui.home.Home_Page.decisionRecycleAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class OptionAdapter extends BaseBindingAdapter<Option, OptionItemBinding>
@@ -44,11 +47,27 @@ public class OptionAdapter extends BaseBindingAdapter<Option, OptionItemBinding>
         notifyItemInserted(position);
     }
 
-    public String computeResult(){
-        int count = getItemCount();
+    public String computeResult(int isWithValue){
         Random r = new Random();
-        int i = r.nextInt(count-1);
-        return items.get(i).getOptionName();
+        int count = getItemCount();
+        if(isWithValue==1){
+            List<String> tmp = new ArrayList<String>();
+            for(int i = 0; i<count; i++){
+                String str = items.get(i).getOptionName();
+                int cnt = items.get(i).getValue();
+                for(int j = 0; j<cnt; j++)
+                    tmp.add(str);
+            }
+            int tmpcnt = tmp.size();
+            Log.d("size",""+tmpcnt);
+            int i = r.nextInt(tmpcnt-1);
+            Log.d("item:", ""+i);
+            return tmp.get(r.nextInt(tmpcnt-1));
+        }
+        else {
+            int i = r.nextInt(count - 1);
+            return items.get(i).getOptionName();
+        }
     }
 
     @Override
