@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="#E4E7F4"
-    app:cardCornerRadius="10dp"
-    app:cardPreventCornerOverlap="true"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
     app:cardUseCompatPadding="true"
-    android:focusable="true">
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardPreventCornerOverlap="true">
 
     <LinearLayout
         android:orientation="vertical"
@@ -18,9 +18,8 @@
         <TextView
             android:id="@+id/event_name1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="30sp" />
-
+            android:layout_height="50dp"
+            android:textSize="26sp" />
 
 
     </LinearLayout>

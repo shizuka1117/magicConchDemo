@@ -1,16 +1,28 @@
 package com.example.magiccouchdemo.ui.home.Home_Page;
 
+
+import java.util.Calendar;
+
 public class decisionList {
     private String name;
     private int imgID;
     private String tag;
 
 
+    public decisionList(){
+
+    }
+
     public decisionList(String name, int id, String tag) {
         this.name = name;
         this.imgID = id;
         this.tag = tag;
     }
+
+    public decisionList(String name){
+        this.name = name;
+    }
+    
 
     public String getName() {
         return name;
@@ -35,4 +47,5 @@ public class decisionList {
     public void setImgID(int imgID) {
         this.imgID = imgID;
     }
+    
 }

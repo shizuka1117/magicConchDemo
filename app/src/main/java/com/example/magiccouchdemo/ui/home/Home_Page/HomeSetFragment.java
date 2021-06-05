@@ -17,13 +17,9 @@ import android.widget.Toast;
 
 import com.example.magiccouchdemo.R;
 import com.example.magiccouchdemo.databinding.FragmentHomeSetBinding;
-import com.example.magiccouchdemo.ui.dashboard.CancelDialogFragment;
-import com.example.magiccouchdemo.ui.dashboard.DashboardViewModel;
 import com.example.magiccouchdemo.ui.home.HomeViewModel;
 import com.example.magiccouchdemo.ui.home.Option;
 import com.example.magiccouchdemo.ui.home.OptionAdapter;
-
-import java.util.ArrayList;
 
 
 public class HomeSetFragment extends Fragment {

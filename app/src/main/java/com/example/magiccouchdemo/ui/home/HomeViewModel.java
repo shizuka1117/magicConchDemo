@@ -1,12 +1,8 @@
 package com.example.magiccouchdemo.ui.home;
 
-import android.content.Entity;
-
 import androidx.databinding.ObservableArrayList;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import java.util.ArrayList;
 
 public class HomeViewModel extends ViewModel {
     public ObservableArrayList<Option> mList = new ObservableArrayList<>();

@@ -48,7 +48,7 @@ public class OptionAdapter extends BaseBindingAdapter<Option, OptionItemBinding>
         int count = getItemCount();
         Random r = new Random();
         int i = r.nextInt(count-1);
-        return items.get(i).optionName;
+        return items.get(i).getOptionName();
     }
 
     @Override
