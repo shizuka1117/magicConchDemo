@@ -41,6 +41,8 @@ public class Option {
         this.optionName = optionName;
         this.value = value;
     }
+
+
     public void addValue(int i){
         value+=i;
         if(value>10)
