@@ -53,7 +53,6 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
     static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         TextView event_name;
-        CheckBox checkBox;
         ImageView img_id;
         TextView event_tag;
 
@@ -73,7 +72,6 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
             cardView.setCardBackgroundColor(Color.parseColor("#"+ranColor.toString()));
 
             event_name = (TextView) itemView.findViewById(R.id.event_name);
-            checkBox = (CheckBox) itemView.findViewById(R.id.checkbox);
             img_id = (ImageView)itemView.findViewById(R.id.tag_img);
             event_tag = (TextView) itemView.findViewById(R.id.event_tag);
         }
@@ -128,40 +126,10 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
                 public boolean onLongClick(View v) {
                     int layoutPos=holder.getLayoutPosition();
                     onItemClickListener.onItemLongClick(holder.cardView,layoutPos);
-                    return false;
+                    return true;
                 }
             });
         }
-        //判断是否选中
-        boolean itemChecked = isItemChecked(position);
-
-        holder.checkBox.setChecked(itemChecked);
-
-        //checkBox的监听
-        holder.checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isItemChecked(position)) {
-                    setItemChecked(position, false);
-                } else {
-                    setItemChecked(position, true);
-                }
-            }
-        });
-
-        //条目view的监听
-         holder.checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isItemChecked(position)) {
-
-                    setItemChecked(position, false);
-                } else {
-                    setItemChecked(position, true);
-                }
-                notifyItemChanged(position);
-            }
-        });
 
         //decisionList list = dataList.get(position);
         holder.event_name.setText(dataList.get(position).getName());
@@ -175,35 +143,5 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
         return dataList.size();
     }
 
-    //获得选中条目的结果
-    public ArrayList<decisionList> getSelectedItem() {
-        ArrayList<decisionList> selectList = new ArrayList<>();
-        for (int i = 0; i < dataList.size(); i++) {
-            if (isItemChecked(i)) {
-                selectList.add(dataList.get(i));
-            }
-        }
-        return selectList;
-    }
-
-    //设置给定位置条目的选择状态
-    void setItemChecked(int position, boolean isChecked) {
-        if (mSelectedPositions == null) {
-            mSelectedPositions = new SparseBooleanArray();
-        }
-        mSelectedPositions.put(position, isChecked);
-    }
-
-    //根据位置判断条目是否选中
-    private boolean isItemChecked(int position) {
-        if (mSelectedPositions != null) {
-            return mSelectedPositions.get(position);
-        }
-        return false;
-    }
-
-    void setShowCheckBox(boolean check){
-        isShowCheckBox = check;
-    }
 
 }
