@@ -10,40 +10,40 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 public class OptionViewModel extends AndroidViewModel {
-    private OptionDao OptionDao;
+    private OptionDao optionDao;
     private LiveData<List<Option>> Options;
 
     public OptionViewModel(@NonNull Application application) {
         super(application);
         OptionDatabase optionDatabase = OptionDatabase.getOptionDataBase(application);
-        OptionDao = optionDatabase.getOptionDao();
+        optionDao = optionDatabase.getOptionDao();
     }
 
-    public void insertOptions(Option... Option){
-        new OptionViewModel.InsertAsyncTask(OptionDao).execute(Option);
+    public void insertOptions(Option... option){
+        new OptionViewModel.InsertAsyncTask(optionDao).execute(option);
     }
 
-    public void updateOptions(Option... Option){
-        new OptionViewModel.UpdateAsyncTask(OptionDao).execute(Option);
+    public void updateOptions(Option... option){
+        new OptionViewModel.UpdateAsyncTask(optionDao).execute(option);
     }
 
-    public void deleteOptions(Option... Options){
-        new OptionViewModel.DeleteAsyncTask(OptionDao).execute(Options);
+    public void deleteOptions(Option... options){
+        new OptionViewModel.DeleteAsyncTask(optionDao).execute(options);
     }
 
     public void deleteAllOptions(){
-        new OptionViewModel.DeleteAllAsyncTask(OptionDao).execute();
+        new OptionViewModel.DeleteAllAsyncTask(optionDao).execute();
     }
 
     static class InsertAsyncTask extends AsyncTask<Option,Void,Void> {
-        private OptionDao OptionDao;
-        InsertAsyncTask(OptionDao OptionDao) {
-            this.OptionDao = OptionDao;
+        private OptionDao optionDao;
+        InsertAsyncTask(OptionDao optionDao) {
+            this.optionDao = optionDao;
         }
 
         @Override
         protected Void doInBackground(Option... options) {
-            OptionDao.insertOptions(options);
+            optionDao.insertOptions(options);
             return null;
         }
 
@@ -51,27 +51,27 @@ public class OptionViewModel extends AndroidViewModel {
     }
 
     static class UpdateAsyncTask extends AsyncTask<Option,Void,Void>{
-        private OptionDao OptionDao;
-        UpdateAsyncTask(OptionDao OptionDao) {
-            this.OptionDao = OptionDao;
+        private OptionDao optionDao;
+        UpdateAsyncTask(OptionDao optionDao) {
+            this.optionDao = optionDao;
         }
 
         @Override
         protected Void doInBackground(Option... options) {
-            OptionDao.updateOptions(options);
+            optionDao.updateOptions(options);
             return null;
         }
     }
 
     static class DeleteAsyncTask extends AsyncTask<Option,Void,Void>{
-        private OptionDao OptionDao;
+        private OptionDao optionDao;
         DeleteAsyncTask(OptionDao optionDao) {
-            this.OptionDao = optionDao;
+            this.optionDao = optionDao;
         }
 
         @Override
         protected Void doInBackground(Option... options) {
-            OptionDao.deleteOptions(options);
+            optionDao.deleteOptions(options);
             return null;
         }
     }
