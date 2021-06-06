@@ -8,13 +8,11 @@ import android.view.ViewGroup;
 
 
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccouchdemo.R;
+import com.example.magiccouchdemo.dataBase.Option;
 import com.example.magiccouchdemo.databinding.OptionItemBinding;
-import com.example.magiccouchdemo.ui.home.Home_Page.decisionList;
-import com.example.magiccouchdemo.ui.home.Home_Page.decisionRecycleAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

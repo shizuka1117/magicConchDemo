@@ -4,6 +4,8 @@ import androidx.databinding.ObservableArrayList;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.magiccouchdemo.dataBase.Option;
+
 public class HomeViewModel extends ViewModel {
     public ObservableArrayList<Option> mList = new ObservableArrayList<>();
     private MutableLiveData<String> decName = new MutableLiveData<>();

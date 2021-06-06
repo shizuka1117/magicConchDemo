@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccouchdemo.R;
-import com.example.magiccouchdemo.ui.home.Option;
+import com.example.magiccouchdemo.dataBase.Option;
 
 import java.util.ArrayList;
 

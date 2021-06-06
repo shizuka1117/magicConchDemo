@@ -10,8 +10,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccouchdemo.R;
-import com.example.magiccouchdemo.ui.home.Option;
+import com.example.magiccouchdemo.dataBase.Option;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -49,7 +50,12 @@ public class BoxHistoryAdapeter extends RecyclerView.Adapter<BoxHistoryAdapeter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Option listItem = decisionLists.get(position);
-        Calendar temp = listItem.getDate();
+        Calendar temp = null;
+        try {
+            temp = listItem.getDate();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         int month = temp.get(Calendar.MONTH)+1;
         int day = temp.get(Calendar.DAY_OF_MONTH);
         int year = temp.get(Calendar.YEAR);

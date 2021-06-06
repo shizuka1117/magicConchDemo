@@ -11,7 +11,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,7 @@ import android.widget.Toast;
 import com.example.magiccouchdemo.R;
 import com.example.magiccouchdemo.databinding.FragmentHomeSetBinding;
 import com.example.magiccouchdemo.ui.home.HomeViewModel;
-import com.example.magiccouchdemo.ui.home.Option;
+import com.example.magiccouchdemo.dataBase.Option;
 import com.example.magiccouchdemo.ui.home.OptionAdapter;
 
 
@@ -41,7 +40,7 @@ public class HomeSetFragment extends Fragment {
         binding.addOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Option option = new Option("", 0);
+                Option option = new Option();
                 adapter.addData(adapter.getItemCount(), option);
                 binding.recyclerView.scrollToPosition(adapter.getItemCount()-1);
             }
@@ -71,9 +70,9 @@ public class HomeSetFragment extends Fragment {
                 }
             }
         });
-        adapter.getItems().add(new Option("张三", 5));
-        adapter.getItems().add(new Option("李四", 5));
-        adapter.getItems().add(new Option("王五", 5));
+        adapter.getItems().add(new Option("张三"));
+        adapter.getItems().add(new Option("李四"));
+        adapter.getItems().add(new Option("王五"));
         return binding.getRoot();
     }
 

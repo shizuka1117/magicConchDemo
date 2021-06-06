@@ -154,6 +154,7 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
             @Override
             public void onClick(View v) {
                 if (isItemChecked(position)) {
+
                     setItemChecked(position, false);
                 } else {
                     setItemChecked(position, true);

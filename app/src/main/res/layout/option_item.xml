@@ -7,7 +7,7 @@
 
         <variable
             name="option"
-            type="com.example.magiccouchdemo.ui.home.Option" />
+            type="com.example.magiccouchdemo.dataBase.Option" />
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
