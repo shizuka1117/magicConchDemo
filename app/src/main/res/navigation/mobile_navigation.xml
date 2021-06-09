@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/HomeSetFragment"
         android:name="com.example.magiccouchdemo.ui.home.Home_Page.HomeSetFragment"
-        android:label="setChoice"
+        android:label="编辑选项"
         tools:layout="@layout/fragment_home_set" >
         <action
             android:id="@+id/action_HomeSetFragment_to_HomeResultFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/HomeResultFragment"
         android:name="com.example.magiccouchdemo.ui.home.Home_Page.HomeResultFragment"
-        android:label="fragment_dashboard_result"
+        android:label=" "
         tools:layout="@layout/fragment_home_result" >
         <action
             android:id="@+id/action_dashboardResultFragment_to_homeFragment"
@@ -27,8 +27,8 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.magiccouchdemo.ui.home.Home_Page.HomePage"
-        android:label=""
-        tools:layout="@layout/recycle_view_list1" >
+        android:label="常用决策"
+        tools:layout="@layout/recycle_view_list1">
         <action
             android:id="@+id/action_homeFragment_to_homeSetFragment"
             app:destination="@id/HomeSetFragment" />
@@ -52,6 +52,17 @@
         <action
             android:id="@+id/action_longTermFragment_to_boxFragment"
             app:destination="@id/boxFragment" />
+        <action
+            android:id="@+id/action_longTermFragment_to_longTermDecSetFragment"
+            app:destination="@id/longTermDecSetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/longTermDecSetFragment"
+        android:name="com.example.magiccouchdemo.ui.longtermdecision.LongTermDecSetFragment"
+        android:label="LongTermDecSetFragment" >
+        <action
+            android:id="@+id/action_longTermDecSetFragment_to_longTermFragment"
+            app:destination="@id/longTermFragment" />
     </fragment>
 
 </navigation>

@@ -28,4 +28,7 @@ public interface ThemeDao {
 
     @Query("select * from Theme where theme.type = 'short'")
     LiveData<List<Theme>> getAllShortTermDecision();
+
+    @Query(("select * from Theme where theme.t_id = :id"))
+    LiveData<Theme> getTheme(int id);
 }
