@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
 public class LongTermDecisionAdapter extends RecyclerView.Adapter<LongTermDecisionAdapter.ViewHolder> {
 
     private List<Theme> dataList = new ArrayList<>();

@@ -21,7 +21,6 @@ import com.example.magiccouchdemo.ui.home.Home_Page.decisionList;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class LongTermDecisionFragment extends Fragment {
     //for database
 
