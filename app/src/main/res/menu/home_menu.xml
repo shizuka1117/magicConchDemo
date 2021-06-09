@@ -4,9 +4,9 @@
     <item
         android:id="@+id/search"
         android:icon="@drawable/ic_baseline_search"
-        app:showAsAction="always"
         android:title="search"
-        ></item>
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always" />
     <item
         android:id="@+id/tag_menu"
         android:icon="@drawable/ic_baseline_menu_24"

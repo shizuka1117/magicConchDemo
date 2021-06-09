@@ -31,4 +31,7 @@ public interface ThemeDao {
 
     @Query(("select * from Theme where theme.t_id = :id"))
     LiveData<Theme> getTheme(int id);
+
+    @Query("select * from Theme where theme.name like :pattern and theme.type = 'short'")
+    LiveData<List<Theme>> searchTheme(String pattern);
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MagicCouchDemo</string>
+    <string name="app_name">神奇海螺</string>
     <string name="title_activity_navigation">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
