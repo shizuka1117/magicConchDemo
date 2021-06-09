@@ -11,19 +11,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccouchdemo.R;
 import com.example.magiccouchdemo.dataBase.Option;
+import com.example.magiccouchdemo.dataBase.Theme;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 
-public class BoxHistoryAdapeter extends RecyclerView.Adapter<BoxHistoryAdapeter.ViewHolder>{
-    private ArrayList<Option> decisionLists = new ArrayList<>();
+public class BoxHistoryAdapter extends RecyclerView.Adapter<BoxHistoryAdapter.ViewHolder>{
+    private List<Option> decisionLists = new ArrayList<>();
 
     //构造函数，传入数据
-    public BoxHistoryAdapeter(ArrayList<Option> decisionLists){
+    public void SetBoxHistoryList(List<Option> decisionLists){
         this.decisionLists = decisionLists;
     }
+
+    public List<Option> getDataList(){ return decisionLists; }
 
     //定义ViewHolder
     static class ViewHolder extends RecyclerView.ViewHolder  {
@@ -51,9 +57,9 @@ public class BoxHistoryAdapeter extends RecyclerView.Adapter<BoxHistoryAdapeter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Option listItem = decisionLists.get(position);
         Calendar temp = null;
-        try {
-            temp = listItem.getDate();
-        } catch (ParseException e) {
+        try{
+           temp = listItem.getDate();
+        }catch (ParseException e){
             e.printStackTrace();
         }
         int month = temp.get(Calendar.MONTH)+1;

@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,14 +21,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccouchdemo.R;
 import com.example.magiccouchdemo.dataBase.Option;
+import com.example.magiccouchdemo.dataBase.OptionViewModel;
+import com.example.magiccouchdemo.dataBase.Theme;
 
-import java.util.ArrayList;
+
 import java.util.Calendar;
+import java.util.List;
 
 public class BoxFragment extends Fragment {
     private RecyclerView Rv;
-    private ArrayList<Option> listItem;
-    private BoxHistoryAdapeter myAdapter;
+    //private ArrayList<Option> listItem;
+    OptionViewModel optionViewModel;
+    private BoxHistoryAdapter myAdapter;
     private ImageButton imageButton;
     private Button button;
     private AlertDialog.Builder builder;
@@ -43,17 +49,34 @@ public class BoxFragment extends Fragment {
         Rv = (RecyclerView)view.findViewById(R.id.time_recycler_view);
 
         // 初始化显示的数据
-        initData();
+        //initData();
 
         // 绑定数据到RecyclerView
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
         Rv.setLayoutManager(layoutManager);
         Rv.setHasFixedSize(true);
 
-
         //为ListView绑定适配器
-        myAdapter = new BoxHistoryAdapeter(listItem);
+        myAdapter = new BoxHistoryAdapter();
         Rv.setAdapter(myAdapter);
+
+        Option item1 = new Option("一起去济南吧", Calendar.getInstance());
+        Option item2 = new Option("苏州gogogo", Calendar.getInstance());
+        Option item3 = new Option("去大理看云海", Calendar.getInstance());
+        Option item4 = new Option("西藏西藏！", Calendar.getInstance());
+
+        optionViewModel = ViewModelProviders.of(this.getActivity()).get(OptionViewModel.class);
+        optionViewModel.deleteAllOptions();
+        optionViewModel.insertOptions(item1,item2,item3,item4);
+
+        optionViewModel.loadAllOptions().observe(this.getViewLifecycleOwner(),new Observer<List<Option>>(){
+            @Override
+            public void onChanged(List<Option> options) {
+                myAdapter.SetBoxHistoryList(options);
+                myAdapter.notifyDataSetChanged();
+            }
+        });
+
 
         imageButton = (ImageButton) view.findViewById(R.id.rest_choices);
         button = (Button) view.findViewById(R.id.ask_button);
@@ -83,9 +106,8 @@ public class BoxFragment extends Fragment {
         //mTextView.setText(arguments.getString("tag"));
     }
         // 初始化显示的数据
-
-    private void initData(){
-        listItem = new ArrayList<Option>();/*在数组中存放数据*/
+    /*private void initData(){
+        listItem = new ArrayList<Option>();//在数组中存放数据
 
         Option item1 = new Option("一起去济南吧", Calendar.getInstance());
         listItem.add(item1);
@@ -98,9 +120,10 @@ public class BoxFragment extends Fragment {
 
         Option item4 = new Option("西藏西藏！", Calendar.getInstance());
         listItem.add(item4);
-    }
+    }*/
 
     private void showAnswer(){
+
         /*int count = listItem.size();
         Random r = new Random();
         int i = r.nextInt(count-1);
