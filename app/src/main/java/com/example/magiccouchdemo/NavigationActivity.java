@@ -13,6 +13,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class NavigationActivity extends AppCompatActivity implements CancelDialogFragment.NoticeDialogListener{
+   private NavController navController;
+
     @Override
     public void onDialogPositiveClick(CancelDialogFragment dialog) {
         View v = findViewById(R.id.nav_view);
@@ -37,7 +39,7 @@ public class NavigationActivity extends AppCompatActivity implements CancelDialo
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.longTermFragment, R.id.homeFragment)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
     }
@@ -45,5 +47,18 @@ public class NavigationActivity extends AppCompatActivity implements CancelDialo
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        navController = Navigation.findNavController(findViewById(R.id.nav_host_fragment));
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        navController.navigateUp();
+        return super.onSupportNavigateUp();
     }
 }

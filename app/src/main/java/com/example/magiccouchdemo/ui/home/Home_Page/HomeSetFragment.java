@@ -32,6 +32,8 @@ public class HomeSetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
+
+        getActivity().findViewById(R.id.nav_view).setVisibility(View.INVISIBLE);
         binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_home_set, container, false);
         binding.setLifecycleOwner(getActivity());

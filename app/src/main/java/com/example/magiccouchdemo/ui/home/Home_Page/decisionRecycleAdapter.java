@@ -18,6 +18,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccouchdemo.R;
+import com.example.magiccouchdemo.dataBase.Theme;
 //import com.example.magiccouchdemo.databinding.EventViewBinding;
 
 import java.util.ArrayList;
@@ -26,13 +27,21 @@ import java.util.Random;
 
 public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycleAdapter.ViewHolder> {
 
-    private List<decisionList> dataList = new ArrayList<>();
+    private List<Theme> dataList = new ArrayList<>();
     //EventViewBinding binding;
-    private boolean isShowCheckBox = false;//表示当前是否是多选状态。
-    private SparseBooleanArray mSelectedPositions = new SparseBooleanArray();//用来存放CheckBox的选中状态，true为选中,false为没有选中
 
+    //for binding database
+    public void setDataList(List<Theme> dataList) {
+        this.dataList = dataList;
+    }
 
-    public decisionRecycleAdapter(List<decisionList> dataList){
+    public List<Theme> getDataList(){ return dataList; }
+
+    public decisionRecycleAdapter(){
+
+    }
+
+    public decisionRecycleAdapter(List<Theme> dataList){
         this.dataList=dataList;
         Log.d("execute","111");
     }
@@ -133,7 +142,7 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
 
         //decisionList list = dataList.get(position);
         holder.event_name.setText(dataList.get(position).getName());
-        holder.img_id.setImageResource(dataList.get(position).getImgID());
+        //holder.img_id.setImageResource(dataList.get(position).getImgID());
         holder.event_tag.setText(dataList.get(position).getTag());
     }
 

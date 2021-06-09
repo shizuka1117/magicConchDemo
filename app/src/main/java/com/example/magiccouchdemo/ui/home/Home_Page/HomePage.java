@@ -10,6 +10,9 @@ import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,7 +33,10 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.example.magiccouchdemo.R;
+import com.example.magiccouchdemo.dataBase.Theme;
+import com.example.magiccouchdemo.dataBase.ThemeViewModel;
 import com.example.magiccouchdemo.databinding.RecycleViewList1Binding;
+import com.example.magiccouchdemo.ui.dashboard.LongTermDecisionAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,25 +44,31 @@ import java.util.List;
 
 public class HomePage extends Fragment {
     RecycleViewList1Binding binding;
-    private List<decisionList> DecisionList = new ArrayList<>();
-
-    private decisionRecycleAdapter adapter = new decisionRecycleAdapter(DecisionList);
-    private LinearLayout EditBar;//控制下方那一行的显示与隐藏
+    private RecyclerView Rv;
+    //for database
+    ThemeViewModel themeViewModel;
+    private decisionRecycleAdapter adapter = new decisionRecycleAdapter();
 
     public HomePage() {
         // Required empty public constructor
     }
 
     public void initDecisionList() {
-        for (int i = 0; i < 6; i++) {
-            decisionList evt1 = new decisionList("今晚吃啥？", R.drawable.ic_baseline_label, "吃吃吃");
-            DecisionList.add(evt1);
-            Log.d("color", evt1.getImgID() + "");
+        Theme it1 = new Theme("Eat","What to eat tonight?","short");
+        Theme it2 = new Theme("Play","Where to go hiking?","short");
+        themeViewModel = ViewModelProviders.of(this.getActivity()).get(ThemeViewModel.class);
+
+        for(int i=0;i<5;i++){
+            themeViewModel.insertThemes(it1,it2);
         }
-        for (int i = 0; i < 5; i++) {
-            decisionList evt2 = new decisionList("聚餐去哪里？", R.drawable.ic_baseline_label, "乐乐乐");
-            DecisionList.add(evt2);
-        }
+
+        themeViewModel.getAllShortTermThemeLive().observe(this.getViewLifecycleOwner(),new Observer<List<Theme>>(){
+            @Override
+            public void onChanged(List<Theme> themes) {
+                adapter.setDataList(themes);
+                adapter.notifyDataSetChanged();
+            }
+        });
 
     }
 
@@ -65,24 +77,27 @@ public class HomePage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);
         binding = DataBindingUtil.inflate(inflater, R.layout.recycle_view_list1, null, false);
         binding.setLifecycleOwner(getActivity());
         //点击加号 跳转
         binding.fab1.setOnClickListener(v -> {
             NavController controller = Navigation.findNavController(v);
-            getActivity().findViewById(R.id.nav_view).setVisibility(View.INVISIBLE);
             controller.navigate(R.id.action_homeFragment_to_homeSetFragment);
         });
+
+        Rv = binding.recycleView1;
 
         //初始化decision_list
         initDecisionList();
 
-        binding.recycleView1.setAdapter(adapter);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
-        binding.recycleView1.setLayoutManager(layoutManager);
+        Rv.setLayoutManager(layoutManager);
+       // Rv.setHasFixedSize(true);
+        Rv.setAdapter(adapter);
 
         setOnListViewClickListener();//监听点击事件
-
 
         return binding.getRoot();
     }
@@ -164,7 +179,7 @@ public class HomePage extends Fragment {
 
 
     private void delete(int position) {
-        if (DecisionList.size() == 0) {
+        if(themeViewModel.getAllShortTermThemeLive()==null){
             Toast.makeText(getActivity(), "您还没有选中任何数据！", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -175,7 +190,8 @@ public class HomePage extends Fragment {
      * 确认删除
      */
     private void beSureDelete(int position) {
-        DecisionList.remove(position);
+        Theme theme =adapter.getDataList().get(position);
+        themeViewModel.deleteThemes(theme);
         adapter.notifyItemRemoved(position);
         adapter.notifyDataSetChanged();
         Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_SHORT).show();
@@ -191,7 +207,7 @@ public class HomePage extends Fragment {
                 dialog.dismiss();
                 // 执行操作
                 Toast.makeText(getActivity(), "你点击确定了", Toast.LENGTH_SHORT).show();
-                //确认删除，调用delete
+                //确认删除，调用buSureDelete
                 beSureDelete(position);
             }
         });
@@ -204,7 +220,4 @@ public class HomePage extends Fragment {
         });
         builder.create().show();
     }
-
-
-
 }
