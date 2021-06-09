@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
 public class LongTermDecisionAdapter extends RecyclerView.Adapter<LongTermDecisionAdapter.ViewHolder> {
 
     private List<Theme> dataList = new ArrayList<>();
@@ -96,7 +97,6 @@ public class LongTermDecisionAdapter extends RecyclerView.Adapter<LongTermDecisi
 
     @Override
     public void onBindViewHolder(@NonNull LongTermDecisionAdapter.ViewHolder holder, int position) {
-        //decisionList list = dataList.get(position);
         holder.event_name.setText(dataList.get(position).getName());
     }
 
