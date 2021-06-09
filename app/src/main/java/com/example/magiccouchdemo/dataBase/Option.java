@@ -61,7 +61,7 @@ public class Option {
     @Ignore
     public Option(String name, Calendar date){
         this.optionName = name;
-        this.date=Calendar.getInstance().toString();
+        this.date=date.toString();
     }
 
     public void addValue(int i){

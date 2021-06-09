@@ -83,6 +83,7 @@ public class BoxFragment extends Fragment {
         //mTextView.setText(arguments.getString("tag"));
     }
         // 初始化显示的数据
+
     private void initData(){
         listItem = new ArrayList<Option>();/*在数组中存放数据*/
 
