@@ -24,6 +24,9 @@ public interface OptionDao {
     @Delete
     public void deleteOptions(Option... option);
 
+    @Query("DELETE FROM option")
+    void deleteAllOptions();
+
     @Query("select * from option")
     public LiveData<List<Option>> loadAllOptions();
 

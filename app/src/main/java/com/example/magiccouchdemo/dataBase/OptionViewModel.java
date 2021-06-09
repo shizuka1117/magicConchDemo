@@ -31,6 +31,16 @@ public class OptionViewModel extends AndroidViewModel {
         new OptionViewModel.DeleteAsyncTask(optionDao).execute(options);
     }
 
+    public LiveData<List<Option>> loadAllOptions() {
+        Options = optionDao.loadAllOptions();
+        return Options;
+    }
+
+    public LiveData<List<Option>> loadOptionsByParent(int parentId) {
+        Options = optionDao.loadOptionsByParent(parentId);
+        return Options;
+    }
+
     public void deleteAllOptions(){
         new OptionViewModel.DeleteAllAsyncTask(optionDao).execute();
     }
@@ -85,7 +95,7 @@ public class OptionViewModel extends AndroidViewModel {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            optionDao.deleteOptions();
+            optionDao.deleteAllOptions();
             return null;
         }
     }
