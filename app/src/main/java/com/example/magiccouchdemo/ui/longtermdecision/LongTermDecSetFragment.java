@@ -27,9 +27,11 @@ public class LongTermDecSetFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().findViewById(R.id.nav_view).setVisibility(View.INVISIBLE);
         longTermViewModel = new ViewModelProvider(getActivity()).get(LongTermViewModel.class);
         binding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_long_term_dec_set, container, false);
+
         binding.setLifecycleOwner(getActivity());
         binding.recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.addOption1.setOnClickListener(new View.OnClickListener() {

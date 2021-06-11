@@ -155,7 +155,6 @@ public class HomePage extends Fragment {
 
     }
 
-
     //menu获取
     //Search 模糊查询
     @Override
