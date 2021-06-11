@@ -18,6 +18,9 @@ public class OptionViewModel extends AndroidViewModel {
         OptionDatabase optionDatabase = OptionDatabase.getOptionDataBase(application);
         optionDao = optionDatabase.getOptionDao();
     }
+    public LiveData<List<Option>> getOptionsByParent(int id){
+        return optionDao.loadOptionsByParent(id);
+    }
 
     public void insertOptions(Option... option){
         new OptionViewModel.InsertAsyncTask(optionDao).execute(option);
@@ -89,4 +92,6 @@ public class OptionViewModel extends AndroidViewModel {
             return null;
         }
     }
+
+
 }

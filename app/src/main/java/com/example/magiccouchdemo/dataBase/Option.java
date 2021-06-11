@@ -11,8 +11,9 @@ import java.util.Date;
 
 @Entity
 public class Option {
-    @PrimaryKey(autoGenerate = true)
     int ParentId;
+    @PrimaryKey(autoGenerate = true)
+    int id;
     String optionName;
     int value;
     int times;
@@ -49,6 +50,7 @@ public class Option {
     }
 
     public Option(){
+        this.ParentId=-1;
     }
 
     @Ignore
@@ -87,5 +89,13 @@ public class Option {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

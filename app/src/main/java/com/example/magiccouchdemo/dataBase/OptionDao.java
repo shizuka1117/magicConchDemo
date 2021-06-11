@@ -11,12 +11,16 @@ import androidx.room.Update;
 
 import com.example.magiccouchdemo.dataBase.Option;
 
+import java.lang.reflect.Array;
 import java.util.List;
 
 @Dao
 public interface OptionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insertOptions(Option... option);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    public void insertOptions(List<Option> options);
 
     @Update
     public void updateOptions(Option... option);
@@ -25,8 +29,8 @@ public interface OptionDao {
     public void deleteOptions(Option... option);
 
     @Query("select * from option")
-    public LiveData<List<Option>> loadAllOptions();
+    public List<Option> loadAllOptions();
 
-    @Query("select * from option where ParentId = :parentId")
+    @Query("select * from option where option.ParentId = :parentId")
     public LiveData<List<Option>> loadOptionsByParent(int parentId);
 }
