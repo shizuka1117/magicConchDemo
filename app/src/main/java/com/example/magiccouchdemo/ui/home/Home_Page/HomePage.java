@@ -76,7 +76,6 @@ public class HomePage extends Fragment {
             }
         });
 
-       // filteredTheme = themeViewModel.getAllShortTermThemeLive();
     }
 
 
