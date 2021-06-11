@@ -1,5 +1,7 @@
 package com.example.magiccouchdemo.dataBase;
 
+import android.util.Log;
+
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -63,7 +65,10 @@ public class Option {
     @Ignore
     public Option(String name, Calendar date){
         this.optionName = name;
-        this.date=date.toString();
+        int year = date.get(Calendar.YEAR);
+        int month = date.get(Calendar.MONTH);
+        int day = date.get(Calendar.DAY_OF_MONTH);
+        this.date=year+"-"+month+"-"+day;
     }
 
     public void addValue(int i){

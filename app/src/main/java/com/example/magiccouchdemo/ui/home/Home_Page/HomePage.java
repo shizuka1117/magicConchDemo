@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -30,6 +31,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.magiccouchdemo.R;
@@ -37,6 +39,7 @@ import com.example.magiccouchdemo.dataBase.Theme;
 import com.example.magiccouchdemo.dataBase.ThemeViewModel;
 import com.example.magiccouchdemo.databinding.RecycleViewList1Binding;
 import com.example.magiccouchdemo.ui.dashboard.LongTermDecisionAdapter;
+import com.example.magiccouchdemo.ui.home.HomeViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +50,9 @@ public class HomePage extends Fragment {
     private RecyclerView Rv;
     //for database
     ThemeViewModel themeViewModel;
+    HomeViewModel homeViewModel;
+    private LiveData<List<Theme>> filteredTheme;//过滤后的
+
     private decisionRecycleAdapter adapter = new decisionRecycleAdapter();
 
     public HomePage() {
@@ -54,15 +60,15 @@ public class HomePage extends Fragment {
     }
 
     public void initDecisionList() {
-        Theme it1 = new Theme("Eat","What to eat tonight?","short");
-        Theme it2 = new Theme("Play","Where to go hiking?","short");
         themeViewModel = ViewModelProviders.of(this.getActivity()).get(ThemeViewModel.class);
-
-        for(int i=0;i<5;i++){
-            themeViewModel.insertThemes(it1,it2);
+        Theme it1 = new Theme("Eat", "What to eat tonight?", "short");
+        Theme it2 = new Theme("Play", "Where to go hiking?", "short");
+        for (int i = 0; i < 5; i++) {
+            themeViewModel.insertThemes(it1, it2);
         }
 
-        themeViewModel.getAllShortTermThemeLive().observe(this.getViewLifecycleOwner(),new Observer<List<Theme>>(){
+        homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
+        themeViewModel.getAllShortTermThemeLive().observe(this.getViewLifecycleOwner(), new Observer<List<Theme>>() {
             @Override
             public void onChanged(List<Theme> themes) {
                 adapter.setDataList(themes);
@@ -70,6 +76,7 @@ public class HomePage extends Fragment {
             }
         });
 
+       // filteredTheme = themeViewModel.getAllShortTermThemeLive();
     }
 
 
@@ -113,7 +120,7 @@ public class HomePage extends Fragment {
                 //跳转到对应的编辑界面！
             }
 
-            //监听长按,长按选择删除
+            //监听长按,长按选择编辑/删除
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onItemLongClick(CardView view, int position) {
@@ -148,13 +155,42 @@ public class HomePage extends Fragment {
 
     }
 
-
     //menu获取
+    //Search 模糊查询
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.home_menu, menu);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setMaxWidth(500);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                /**
+                 * 模糊匹配
+                 */
+                String pattern = newText.trim();
+                filteredTheme = themeViewModel.searchTheme(pattern);
+                filteredTheme.observe(getActivity(), new Observer<List<Theme>>() {
+                    @Override
+                    public void onChanged(List<Theme> themes) {
+                        int temp = adapter.getItemCount();
+                        adapter.setDataList(themes);
+                        if(temp!=themes.size()){
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
+                return true;
+            }
+        });
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -177,6 +213,10 @@ public class HomePage extends Fragment {
         setHasOptionsMenu(true);
     }
 
+
+    private void edit(){
+
+    }
 
     private void delete(int position) {
         if(themeViewModel.getAllShortTermThemeLive()==null){

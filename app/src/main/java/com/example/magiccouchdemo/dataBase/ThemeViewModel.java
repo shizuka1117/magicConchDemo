@@ -13,7 +13,7 @@ public class ThemeViewModel extends AndroidViewModel {
     private ThemeDao themeDao;
     private LiveData<List<Theme>> allLongTheme;
     private LiveData<List<Theme>> allShortTheme;
-    private Theme theme;
+
 
     public ThemeViewModel(@NonNull Application application) {
         super(application);
@@ -48,6 +48,8 @@ public class ThemeViewModel extends AndroidViewModel {
     }
 
     public LiveData<Theme> getTheme(int id){ return themeDao.getTheme(id);}
+
+    public LiveData<List<Theme>> searchTheme(String pattern){ return themeDao.searchTheme("%" + pattern + "%"); }
 
     static class InsertAsyncTask extends AsyncTask<Theme,Void,Void> {
         private ThemeDao themeDao;

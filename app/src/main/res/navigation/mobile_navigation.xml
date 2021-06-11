@@ -36,7 +36,7 @@
     <fragment
         android:id="@+id/boxFragment"
         android:name="com.example.magiccouchdemo.ui.dashboard.BoxFragment"
-        android:label="BoxFragment" >
+        android:label="" >
         <action
             android:id="@+id/action_boxFragment_to_restFragment"
             app:destination="@id/restFragment" />
@@ -48,10 +48,21 @@
     <fragment
         android:id="@+id/longTermFragment"
         android:name="com.example.magiccouchdemo.ui.dashboard.LongTermDecisionFragment"
-        android:label="LongTermDecisionFragment" >
+        android:label="长期打卡" >
         <action
             android:id="@+id/action_longTermFragment_to_boxFragment"
             app:destination="@id/boxFragment" />
+        <action
+            android:id="@+id/action_longTermFragment_to_longTermDecSetFragment"
+            app:destination="@id/longTermDecSetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/longTermDecSetFragment"
+        android:name="com.example.magiccouchdemo.ui.longtermdecision.LongTermDecSetFragment"
+        android:label="LongTermDecSetFragment" >
+        <action
+            android:id="@+id/action_longTermDecSetFragment_to_longTermFragment"
+            app:destination="@id/longTermFragment" />
     </fragment>
 
 </navigation>
