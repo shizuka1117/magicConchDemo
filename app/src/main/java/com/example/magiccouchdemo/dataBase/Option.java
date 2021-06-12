@@ -63,12 +63,13 @@ public class Option {
     }
 
     @Ignore
-    public Option(String name, Calendar date){
+    public Option(String name, Calendar date, int parentId){
         this.optionName = name;
         int year = date.get(Calendar.YEAR);
-        int month = date.get(Calendar.MONTH);
+        int month = date.get(Calendar.MONTH)+1;
         int day = date.get(Calendar.DAY_OF_MONTH);
         this.date=year+"-"+month+"-"+day;
+        this.ParentId = parentId;
     }
 
     public void addValue(int i){

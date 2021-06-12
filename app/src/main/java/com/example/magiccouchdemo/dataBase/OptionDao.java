@@ -32,7 +32,7 @@ public interface OptionDao {
     void deleteAllOptions();
 
     @Query("select * from option")
-    public List<Option> loadAllOptions();
+    public LiveData<List<Option>> loadAllOptions();
 
     @Query("select * from option where option.ParentId = :parentId")
     public LiveData<List<Option>> loadOptionsByParent(int parentId);

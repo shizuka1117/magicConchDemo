@@ -39,11 +39,6 @@ public class OptionViewModel extends AndroidViewModel {
         return Options;
     }
 
-    public LiveData<List<Option>> loadOptionsByParent(int parentId) {
-        Options = optionDao.loadOptionsByParent(parentId);
-        return Options;
-    }
-
     public void deleteAllOptions(){
         new OptionViewModel.DeleteAllAsyncTask(optionDao).execute();
     }

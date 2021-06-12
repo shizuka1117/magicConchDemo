@@ -24,10 +24,10 @@ public abstract class OptionDatabase extends RoomDatabase {
                             database.execSQL("drop table Option");
                             database.execSQL("create table Option(" +
                                     "id INTEGER PRIMARY KEY NOT NULL," +
-                                    "ParentId INTEGER," +
+                                    "ParentId INTEGER NOT NULL," +
                                     "optionName TEXT, " +
-                                    "value INTEGER," +
-                                    "times INTEGER," +
+                                    "value INTEGER NOT NULL," +
+                                    "times INTEGER NOT NULL," +
                                     "date TEXT)");
                         }
                     })
