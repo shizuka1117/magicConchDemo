@@ -10,20 +10,26 @@
         android:id="@+id/add_option"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="72dp"
         android:clickable="true"
+        android:contentDescription="TODO"
         android:focusable="true"
-        app:srcCompat="@drawable/ic_baseline_add_24"
+        app:backgroundTint="@color/primary1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="TODO" />
+        app:srcCompat="@drawable/ic_baseline_add_24"
+        app:useCompatPadding="true" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_view2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

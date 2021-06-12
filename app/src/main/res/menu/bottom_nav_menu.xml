@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/longTermFragment"
-        android:icon="@drawable/ic_baseline_format_list_bulleted_24"
-        android:title="@string/title_home" />
+        android:icon="@drawable/ic_todo"
+        app:showAsAction="always"
+        android:title="长期打卡" />
 
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_baseline_add_circle_outline_24"
-        android:title="@string/title_dashboard" />
+        android:icon="@drawable/ic_search"
+        app:showAsAction="always"
+        android:title="常用决策" />
 
-    <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_baseline_person_24"
-        android:title="@string/title_notifications" />
 
 </menu>

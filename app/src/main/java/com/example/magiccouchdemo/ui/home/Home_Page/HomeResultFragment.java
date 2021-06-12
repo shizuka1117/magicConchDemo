@@ -17,6 +17,9 @@ import com.example.magiccouchdemo.R;
 import com.example.magiccouchdemo.databinding.FragmentHomeResultBinding;
 import com.example.magiccouchdemo.ui.home.HomeViewModel;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import pl.droidsonroids.gif.GifDrawable;
 
 
@@ -31,11 +34,13 @@ public class HomeResultFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_result, container, false);
         binding.setLifecycleOwner(getActivity());
         Log.d("result", "onCreateView: "+model.getResult());
-        binding.result.setText(model.getResult());
 
         GifDrawable gifDrawable = (GifDrawable)binding.gif1.getDrawable();
         gifDrawable.start();
         gifDrawable.setLoopCount(1);//设置播放一次
+
+
+        binding.result.setText(model.getResult());
 
         binding.returnButton.setOnClickListener(new View.OnClickListener() {
             @Override

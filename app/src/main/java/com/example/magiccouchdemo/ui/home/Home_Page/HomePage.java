@@ -2,6 +2,8 @@ package com.example.magiccouchdemo.ui.home.Home_Page;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -87,6 +89,7 @@ public class HomePage extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.recycle_view_list1, null, false);
         binding.setLifecycleOwner(getActivity());
         //点击加号 跳转
+        binding.fab1.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9AC0FD")));
         binding.fab1.setOnClickListener(v -> {
             NavController controller = Navigation.findNavController(v);
             controller.navigate(R.id.action_homeFragment_to_homeSetFragment);

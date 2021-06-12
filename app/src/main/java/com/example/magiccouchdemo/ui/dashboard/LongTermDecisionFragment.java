@@ -1,5 +1,7 @@
 package com.example.magiccouchdemo.ui.dashboard;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +50,7 @@ public class LongTermDecisionFragment extends Fragment {
 
         Rv = (RecyclerView)view.findViewById(R.id.recycle_view2);
         //swipe_refresh = (SwipeRefreshLayout)view.findViewById(R.id.refresh_long);
+
         floatingActionButton =(FloatingActionButton)view.findViewById(R.id.add_option);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
