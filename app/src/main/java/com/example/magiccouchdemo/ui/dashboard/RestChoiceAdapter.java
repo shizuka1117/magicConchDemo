@@ -37,16 +37,16 @@ public class RestChoiceAdapter extends RecyclerView.Adapter<RestChoiceAdapter.Vi
         randomColor rand = new randomColor();//随机颜色类
 
         Random random = new Random();//随机类
-        List<Integer> color_list = rand.getColor();//返回一个color list
+        List<String> color_list = rand.getColor();//返回一个color list
 
         Integer r = random.nextInt(rand.getColor().size());//获取随机下标
-        Integer ranColor = color_list.get(r);
+        String ranColor = color_list.get(r);
 
 
         public ViewHolder(View root) {
             super(root);
             listView = (CardView) itemView;
-            listView.setCardBackgroundColor(Color.parseColor("#"+ranColor.toString()));
+            listView.setCardBackgroundColor(Color.parseColor(ranColor));
             event_name = (TextView) itemView.findViewById(R.id.event_name1);
         }
 

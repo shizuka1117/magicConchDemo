@@ -1,6 +1,7 @@
 package com.example.magiccouchdemo.ui.home.Home_Page;
 
 import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -67,9 +68,9 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
 
         randomColor rand = new randomColor();//随机颜色类
         Random random = new Random();//随机类
-        List<Integer> color_list = rand.getColor();//返回一个color list
+        List<String> color_list = rand.getColor();//返回一个color list
         Integer r = random.nextInt(rand.getColor().size());//获取随机下标
-        Integer ranColor = color_list.get(r);
+        String ranColor = color_list.get(r);
 
 
         @SuppressLint("ResourceAsColor")
@@ -78,7 +79,8 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
 
             //setBackgroundcolor 无效？但是不能直接setBackgroundcolor(int color)
             cardView = (CardView) itemView;
-            cardView.setCardBackgroundColor(Color.parseColor("#"+ranColor.toString()));
+            cardView.setCardBackgroundColor(Color.parseColor(ranColor));
+           // cardView.setCardBackgroundColor(Color.parseColor("#FFEEDE"));
 
             event_name = (TextView) itemView.findViewById(R.id.event_name);
             img_id = (ImageView)itemView.findViewById(R.id.tag_img);

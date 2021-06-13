@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.MenuPopupWindow;
 import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -118,7 +119,8 @@ public class HomePage extends Fragment {
             //监听点击（短）事件
             @Override
             public void onItemClick(CardView view, int position) {
-                Toast.makeText(getActivity(), "onClick" + position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "onClick" + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "onClick" + view.getCardBackgroundColor(), Toast.LENGTH_SHORT).show();
                 //跳转到对应的编辑界面！
             }
 
@@ -191,14 +193,17 @@ public class HomePage extends Fragment {
                 return true;
             }
         });
+
+
+
     }
 
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.tag_menu:
-                Log.d("RecycleViewList1", "点击了标签筛选");
+            case R.id.menu1:
+                Log.d("RecycleViewList1", "点击了menu1");
                 break;
             case R.id.search:
                 Log.d("RecycleViewList1", "点击了搜索");
