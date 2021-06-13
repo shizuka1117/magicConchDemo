@@ -38,6 +38,6 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(intent); //执行
             }
         };
-        timer.schedule(task, 1000*2); //2秒后自动跳转*/
+        timer.schedule(task, 1000*3); //2秒后自动跳转*/
     }
 }

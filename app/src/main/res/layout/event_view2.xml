@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="95dp"
     app:cardCornerRadius="12dp"
-    app:contentPaddingTop="25dp"
+    app:contentPaddingTop="20dp"
     app:cardElevation="5dp"
     app:contentPadding="5dp"
     android:clickable="true"
