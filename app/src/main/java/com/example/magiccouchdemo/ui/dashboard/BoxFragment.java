@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
@@ -60,16 +61,17 @@ public class BoxFragment extends Fragment {
         myAdapter = new BoxHistoryAdapter();
         Rv.setAdapter(myAdapter);
 
-        Option item1 = new Option("一起去济南吧", Calendar.getInstance());
-        Option item2 = new Option("苏州gogogo", Calendar.getInstance());
-        Option item3 = new Option("去大理看云海", Calendar.getInstance());
-        Option item4 = new Option("西藏西藏！", Calendar.getInstance());
+        Option item1 = new Option("一起去济南吧", Calendar.getInstance(),1);
+        Option item2 = new Option("苏州gogogo", Calendar.getInstance(),2);
+        Option item3 = new Option("去大理看云海", Calendar.getInstance(),1);
+        Option item4 = new Option("西藏西藏！", Calendar.getInstance(),1);
 
         optionViewModel = ViewModelProviders.of(this.getActivity()).get(OptionViewModel.class);
         optionViewModel.deleteAllOptions();
         optionViewModel.insertOptions(item1,item2,item3,item4);
 
-        optionViewModel.loadAllOptions().observe(this.getViewLifecycleOwner(),new Observer<List<Option>>(){
+
+        optionViewModel.getOptionsByParent(1).observe(this.getViewLifecycleOwner(),new Observer<List<Option>>(){
             @Override
             public void onChanged(List<Option> options) {
                 myAdapter.SetBoxHistoryList(options);
