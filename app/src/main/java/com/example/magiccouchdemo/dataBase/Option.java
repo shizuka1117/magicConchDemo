@@ -40,11 +40,8 @@ public class Option {
         return calendar;
     }
 
-    public void setDate(Calendar date) {
-        int year = date.get(Calendar.YEAR);
-        int month = date.get(Calendar.MONTH)+1;
-        int day = date.get(Calendar.DAY_OF_MONTH);
-        this.date=year+"-"+month+"-"+day;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getTimes() {
@@ -77,6 +74,8 @@ public class Option {
         this.ParentId = parentId;
         this.times = 0;
     }
+
+
 
     public void addValue(int i){
         value+=i;
