@@ -13,21 +13,29 @@ public class randomColor {
     }
 
     public void setColors(){
-        colors.add("#FAF9DE");//杏仁黄
-        colors.add("#FFF8DC");//粉
-        //colors.add("#E6E6FA");//Lavender
-        colors.add("#F0FFF0");//HoneyDew
-        colors.add("#FFF5EE");//Seashell
-        colors.add("#F8F8FF");//GhostWhite
-        colors.add("#F0FFFF");//Azure1
-        colors.add("#FFF8DC");//Coresilk
-        colors.add("#F5FFFA");//MintCream
+        /*Yellow*/
+        colors.add("#FFFAF0");//FLowerWhite
+        colors.add("#FFF8DC");//LightYellow
+
+        /*Pink*/
+        colors.add("#FFF5EE");//sea shell
+        colors.add("#fae8e8");//FlowerBlush
+
+        /*Green*/
+        colors.add("#F0FFF0");//Honeydew
+        colors.add("#e3f1de");//melodyGreen
+
+        /*orange*/
+        colors.add("#f7e7d8");
+
+        /*Blue*/
         colors.add("#F0F8FF");//AliceBlue
-        colors.add("#FFF0F5");//LavenderBlush
-        colors.add("#FFFFF0");//Ivory
-        colors.add("#FFFAF0");//FloralWhite
-        colors.add("#E6E6FA");//Lavender
-        //Log.d("color0:",colors.get(0)+"");
+        colors.add("#e3eef8");//melodyBlue
+
+        /*Purple*/
+        colors.add("#eaeafb");//Lavender
+        colors.add("#eeeaf8");
+
     }
 
     public List<String> getColor(){
