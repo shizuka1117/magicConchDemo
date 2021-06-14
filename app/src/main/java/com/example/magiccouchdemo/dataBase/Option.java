@@ -1,5 +1,6 @@
 package com.example.magiccouchdemo.dataBase;
 
+import android.graphics.Path;
 import android.util.Log;
 
 import androidx.room.Entity;
@@ -26,7 +27,7 @@ public class Option {
     }
 
     public void setParentId(int parentId) {
-        ParentId = parentId;
+        this.ParentId = parentId;
     }
 
     public Calendar getDate() throws ParseException {
@@ -52,7 +53,12 @@ public class Option {
     }
 
     public Option(){
-        this.ParentId=-1;
+
+    }
+
+    @Ignore
+    public Option(int parentId){
+        ParentId = parentId;
     }
 
     @Ignore

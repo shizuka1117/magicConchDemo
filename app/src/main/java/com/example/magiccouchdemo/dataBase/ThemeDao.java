@@ -29,8 +29,11 @@ public interface ThemeDao {
     @Query("select * from Theme where theme.type = 'short'")
     LiveData<List<Theme>> getAllShortTermDecision();
 
-    @Query(("select * from Theme where theme.t_id = :id"))
+    @Query("select * from Theme where theme.t_id = :id")
     LiveData<Theme> getTheme(int id);
+
+    @Query("select MAX(t_id) from Theme where type = 'short'")
+    LiveData<Integer> getMaxThemeID();
 
     @Query("select * from Theme where theme.name like :pattern and theme.type = 'short'")
     LiveData<List<Theme>> searchTheme(String pattern);

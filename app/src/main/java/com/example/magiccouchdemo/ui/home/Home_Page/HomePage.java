@@ -12,6 +12,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.MenuPopupWindow;
 import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ObservableArrayList;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -38,6 +39,8 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.magiccouchdemo.R;
+import com.example.magiccouchdemo.dataBase.Option;
+import com.example.magiccouchdemo.dataBase.OptionViewModel;
 import com.example.magiccouchdemo.dataBase.Theme;
 import com.example.magiccouchdemo.dataBase.ThemeViewModel;
 import com.example.magiccouchdemo.databinding.RecycleViewList1Binding;
@@ -54,6 +57,7 @@ public class HomePage extends Fragment {
     //for database
     ThemeViewModel themeViewModel;
     HomeViewModel homeViewModel;
+    OptionViewModel optionViewModel;
     private LiveData<List<Theme>> filteredTheme;//过滤后的
 
     private decisionRecycleAdapter adapter = new decisionRecycleAdapter();
@@ -64,12 +68,16 @@ public class HomePage extends Fragment {
 
     public void initDecisionList() {
         themeViewModel = ViewModelProviders.of(this.getActivity()).get(ThemeViewModel.class);
+        optionViewModel = ViewModelProviders.of(this.getActivity()).get(OptionViewModel.class);
+        /*
         Theme it1 = new Theme("Eat", "What to eat tonight?", "short");
         Theme it2 = new Theme("Play", "Where to go hiking?", "short");
         for (int i = 0; i < 5; i++) {
             themeViewModel.insertThemes(it1, it2);
         }
-
+         */
+        //themeViewModel.deleteAllThemes();
+        //optionViewModel.deleteAllOptions();
         homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
         themeViewModel.getAllShortTermThemeLive().observe(this.getViewLifecycleOwner(), new Observer<List<Theme>>() {
             @Override
@@ -78,20 +86,25 @@ public class HomePage extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
-
+        themeViewModel.getMaxThemeID().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                homeViewModel.setMaxThemeID(integer);
+            }
+        });
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);
         binding = DataBindingUtil.inflate(inflater, R.layout.recycle_view_list1, null, false);
         binding.setLifecycleOwner(getActivity());
         //点击加号 跳转
         binding.fab1.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#9AC0FD")));
         binding.fab1.setOnClickListener(v -> {
+            homeViewModel.clear();
             NavController controller = Navigation.findNavController(v);
             controller.navigate(R.id.action_homeFragment_to_homeSetFragment);
         });
@@ -114,12 +127,18 @@ public class HomePage extends Fragment {
 
 
     private void setOnListViewClickListener() {
-
         adapter.setOnItemClickListener(new decisionRecycleAdapter.onItemClickListener() {
             //监听点击（短）事件
             @Override
             public void onItemClick(CardView view, int position) {
-                //Toast.makeText(getActivity(), "onClick" + position, Toast.LENGTH_SHORT).show();
+                homeViewModel.clear();
+                Theme theme = adapter.getDataList().get(position);
+                homeViewModel.setDecName(theme.getName());
+                homeViewModel.setTag(theme.getTag());
+                homeViewModel.setId(theme.getT_id());
+                Log.d("themeID", theme.getT_id()+"");
+                NavController controller = Navigation.findNavController(getView());
+                controller.navigate(R.id.action_homeFragment_to_homeSetFragment);
                 Toast.makeText(getActivity(), "onClick" + view.getCardBackgroundColor(), Toast.LENGTH_SHORT).show();
                 //跳转到对应的编辑界面！
             }
@@ -237,8 +256,9 @@ public class HomePage extends Fragment {
      * 确认删除
      */
     private void beSureDelete(int position) {
-        Theme theme =adapter.getDataList().get(position);
+        Theme theme = adapter.getDataList().get(position);
         themeViewModel.deleteThemes(theme);
+        adapter.getDataList().remove(theme);
         adapter.notifyItemRemoved(position);
         adapter.notifyDataSetChanged();
         Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_SHORT).show();

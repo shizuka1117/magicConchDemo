@@ -8,10 +8,14 @@ import android.view.ViewGroup;
 
 
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccouchdemo.R;
 import com.example.magiccouchdemo.dataBase.Option;
+import com.example.magiccouchdemo.dataBase.OptionViewModel;
+import com.example.magiccouchdemo.dataBase.Theme;
+import com.example.magiccouchdemo.dataBase.ThemeViewModel;
 import com.example.magiccouchdemo.databinding.OptionItemBinding;
 
 import java.util.ArrayList;
@@ -20,9 +24,11 @@ import java.util.Random;
 
 public class OptionAdapter extends BaseBindingAdapter<Option, OptionItemBinding>
 {
-    public OptionAdapter(Context context)
+    OptionViewModel model;
+    public OptionAdapter(Context context, OptionViewModel model)
     {
         super(context);
+        this.model = model;
     }
 
     @Override
@@ -76,9 +82,10 @@ public class OptionAdapter extends BaseBindingAdapter<Option, OptionItemBinding>
             @Override
             public void onClick(View v) {
                 int position = items.indexOf(binding.getOption());
+                Option option = binding.getOption();
+                model.deleteOptions(option);
                 items.remove(position);
                 //删除动画
-                notifyItemRemoved(position);
                 notifyDataSetChanged();
             }
         });

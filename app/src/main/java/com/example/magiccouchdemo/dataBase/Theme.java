@@ -1,6 +1,7 @@
 package com.example.magiccouchdemo.dataBase;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -11,6 +12,7 @@ public class Theme {
     private String tag; //标签
     private String name;    //主题名
     private String type;    //类型 long or short
+
 
     public Theme(String tag, String name, String type) {
         this.tag = tag;

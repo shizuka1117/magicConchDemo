@@ -19,7 +19,16 @@ public class OptionViewModel extends AndroidViewModel {
         optionDao = optionDatabase.getOptionDao();
     }
     public LiveData<List<Option>> getOptionsByParent(int id){
-        return optionDao.loadOptionsByParent(id);
+        LiveData<List<Option>> tmp = optionDao.loadOptionsByParent(id);
+        return tmp;
+    }
+
+    public LiveData<List<Option>> getOptions(){
+        return optionDao.loadAllOptions();
+    }
+
+    public LiveData<Option> getOptionById(int id){
+        return optionDao.loadOptionById(id);
     }
 
     public void insertOptions(Option... option){
