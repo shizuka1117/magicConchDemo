@@ -1,5 +1,7 @@
 package com.example.magiccouchdemo.dataBase;
 
+import android.graphics.Path;
+
 import androidx.databinding.ObservableArrayList;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -28,12 +30,16 @@ public interface OptionDao {
     @Delete
     public void deleteOptions(Option... option);
 
-    @Query("DELETE FROM option")
+    @Query("DELETE FROM Option")
     void deleteAllOptions();
 
-    @Query("select * from option")
+    @Query("select * from Option")
     public LiveData<List<Option>> loadAllOptions();
 
-    @Query("select * from option where option.ParentId = :parentId")
+    @Query("select * from Option where option.id = :id")
+    //select * from Theme where theme.t_id = :id
+    public LiveData<Option> loadOptionById(int id);
+
+    @Query("select * from Option where option.ParentId = :parentId")
     public LiveData<List<Option>> loadOptionsByParent(int parentId);
 }

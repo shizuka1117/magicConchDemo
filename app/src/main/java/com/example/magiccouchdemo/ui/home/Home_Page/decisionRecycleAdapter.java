@@ -100,9 +100,9 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
         ViewHolder holder = new ViewHolder(view);
         final ViewHolder holder1 = new ViewHolder(view);
 
-/**
- * holder.event_name.setOnClickListener(new View.OnClickListener() {
- *             @Override
+/*
+  holder.event_name.setOnClickListener(new View.OnClickListener() {
+              @Override
  *             public void onClick(View v) {
  *                 int position = holder.getAdapterPosition()+1;
  *                 decisionList decision = dataList.get(position);
@@ -129,7 +129,6 @@ public class decisionRecycleAdapter extends RecyclerView.Adapter<decisionRecycle
                 public void onClick(View v) {
                     int layoutPos=holder.getLayoutPosition();
                     onItemClickListener.onItemClick(holder.cardView,layoutPos);
-
                 }
             });
             holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
