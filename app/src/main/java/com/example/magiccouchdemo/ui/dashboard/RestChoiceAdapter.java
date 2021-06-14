@@ -19,10 +19,15 @@ import java.util.List;
 import java.util.Random;
 
 public class RestChoiceAdapter extends RecyclerView.Adapter<RestChoiceAdapter.ViewHolder> {
-    private ArrayList<Option> restOptions = new ArrayList<>();
+    private List<Option> restOptions = new ArrayList<>();
     //构造函数，传入数据
-    public RestChoiceAdapter(ArrayList<Option> restOptions){
-        this.restOptions = restOptions;
+    public RestChoiceAdapter(){
+    }
+    public void SetRestOptionsList(List<Option> decisionLists){
+        this.restOptions = decisionLists;
+    }
+    public List<Option> getRestOptions(){
+        return restOptions;
     }
 
     //定义ViewHolder

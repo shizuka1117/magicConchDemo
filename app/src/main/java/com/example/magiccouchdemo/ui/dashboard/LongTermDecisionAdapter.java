@@ -2,6 +2,7 @@ package com.example.magiccouchdemo.ui.dashboard;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,8 +87,13 @@ public class LongTermDecisionAdapter extends RecyclerView.Adapter<LongTermDecisi
         holder.event_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                int pos = holder.getLayoutPosition();
+                int ParentId = dataList.get(pos).getT_id();
+                bundle.putInt("ParentId",ParentId);
+
                 NavController controller = Navigation.findNavController(v);
-                controller.navigate(R.id.action_longTermFragment_to_boxFragment);
+                controller.navigate(R.id.action_longTermFragment_to_boxFragment,bundle);
             }
         });
         Log.d("View Count", "11111111");

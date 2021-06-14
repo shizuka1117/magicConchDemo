@@ -42,4 +42,10 @@ public interface OptionDao {
 
     @Query("select * from Option where option.ParentId = :parentId")
     public LiveData<List<Option>> loadOptionsByParent(int parentId);
+
+    @Query("select * from option where option.ParentId = :parentId and option.times = 0")
+    public LiveData<List<Option>> loadNewOptionByParent(int parentId);
+
+    @Query("select * from option where option.ParentId = :parentId and option.times > 0")
+    public LiveData<List<Option>> loadHistoryOptionByParent(int parentId);
 }
