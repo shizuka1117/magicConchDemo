@@ -2,6 +2,7 @@ package com.example.magiccouchdemo.ui.home;
 
 import android.content.Context;
 import android.util.Log;
+import android.util.TimeUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public class OptionAdapter extends BaseBindingAdapter<Option, OptionItemBinding>
     }
 
     public String computeResult(int isWithValue){
-        Random r = new Random();
+        Random r = new Random(System.currentTimeMillis());
         int count = getItemCount();
         if(isWithValue==1){
             List<String> tmp = new ArrayList<String>();
@@ -64,12 +65,12 @@ public class OptionAdapter extends BaseBindingAdapter<Option, OptionItemBinding>
             }
             int tmpcnt = tmp.size();
             Log.d("size",""+tmpcnt);
-            int i = r.nextInt(tmpcnt-1);
+            int i = r.nextInt(tmpcnt);
             Log.d("item:", ""+i);
-            return tmp.get(r.nextInt(tmpcnt-1));
+            return tmp.get(r.nextInt(tmpcnt));
         }
         else {
-            int i = r.nextInt(count - 1);
+            int i = r.nextInt(count);
             return items.get(i).getOptionName();
         }
     }
