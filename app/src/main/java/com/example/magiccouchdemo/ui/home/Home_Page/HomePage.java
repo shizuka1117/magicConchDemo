@@ -258,6 +258,7 @@ public class HomePage extends Fragment {
     private void beSureDelete(int position) {
         Theme theme = adapter.getDataList().get(position);
         themeViewModel.deleteThemes(theme);
+        adapter.getDataList().remove(theme);
         adapter.notifyItemRemoved(position);
         adapter.notifyDataSetChanged();
         Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_SHORT).show();
