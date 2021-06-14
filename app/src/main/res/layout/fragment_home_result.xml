@@ -20,26 +20,29 @@
         android:layout_marginTop="88dp"
         android:text="神奇海螺的结果是..."
         android:textSize="26sp"
+        android:shadowColor="@color/black_overlay"
+        android:shadowRadius="5"
+        android:shadowDx="3"
+        android:shadowDy="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:hint="结果"
-        android:text="@={model.result}"
-        android:textSize="20sp"
+        android:layout_marginBottom="28dp"
+
         android:shadowColor="@color/black_overlay"
-        android:shadowRadius="5"
         android:shadowDx="5"
         android:shadowDy="5"
+        android:shadowRadius="5"
+        android:text="@={model.result}"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <pl.droidsonroids.gif.GifImageView

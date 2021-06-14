@@ -202,7 +202,7 @@ public class HomePage extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu1:
+            case R.id.tag_menu:
                 Log.d("RecycleViewList1", "点击了menu1");
                 break;
             case R.id.search:
