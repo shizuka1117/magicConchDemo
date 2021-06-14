@@ -33,7 +33,6 @@ public class LongTermDecisionFragment extends Fragment {
 
     //
     private RecyclerView Rv;
-    private ArrayList<decisionList> lists;
     private LongTermDecisionAdapter myAdapter;
     //private SwipeRefreshLayout swipe_refresh;
     private FloatingActionButton floatingActionButton;
@@ -52,17 +51,14 @@ public class LongTermDecisionFragment extends Fragment {
         //swipe_refresh = (SwipeRefreshLayout)view.findViewById(R.id.refresh_long);
 
         floatingActionButton =(FloatingActionButton)view.findViewById(R.id.add_option);
-
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NavController controller = Navigation.findNavController(v);
                 controller.navigate(R.id.action_longTermFragment_to_longTermDecSetFragment);
             }
-        });
 
-        // 初始化显示的数据
-        //initData();
+        });
 
         // 绑定数据到RecyclerView
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
@@ -71,17 +67,18 @@ public class LongTermDecisionFragment extends Fragment {
         myAdapter = new LongTermDecisionAdapter();
         Rv.setAdapter(myAdapter);
 
-        Theme item1 = new Theme(null,"这个学期要读完的15本书","long");
-        Theme item2 = new Theme(null,"今年要去的十个旅行地","long");
-        Theme item3 = new Theme(null,"和ta在一起要做的事","long");
-        Theme item4 = new Theme(null,"给自己的奖励吃吃吃","long");
-        Theme item5 = new Theme(null,"给自己的奖励吃吃吃111","long");
+        //生成测试数据
+        //Theme item1 = new Theme(null,"这个学期要读完的15本书","long");
+        //Theme item2 = new Theme(null,"今年要去的十个旅行地","long");
+        //Theme item3 = new Theme(null,"和ta在一起要做的事","long");
+        //Theme item4 = new Theme(null,"给自己的奖励吃吃吃","long");
+        //Theme item5 = new Theme(null,"给自己的奖励吃吃吃111","long");
 
 
         //database交互
         themeViewModel = ViewModelProviders.of(this.getActivity()).get(ThemeViewModel.class);
-        themeViewModel.deleteAllThemes();
-        themeViewModel.insertThemes(item1,item2,item3,item4,item5);
+        //themeViewModel.deleteAllThemes();
+        //themeViewModel.insertThemes(item1,item2,item3,item4,item5);
 
         /*swipe_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {  //列表下拉刷新
             @Override
@@ -99,24 +96,6 @@ public class LongTermDecisionFragment extends Fragment {
 
 
         return view;
-
-    }
-
-
-    private void initData() {
-        lists = new ArrayList<decisionList>();/*在数组中存放数据*/
-
-        decisionList item1 = new decisionList("这个学期要读完的15本书");
-        lists.add(item1);
-
-        decisionList item2 = new decisionList("今年要去的十个旅行地");
-        lists.add(item2);
-
-        decisionList item3 = new decisionList("和ta在一起要做的事");
-        lists.add(item3);
-
-        decisionList item4 = new decisionList("给自己的奖励吃吃吃");
-        lists.add(item4);
 
     }
 
