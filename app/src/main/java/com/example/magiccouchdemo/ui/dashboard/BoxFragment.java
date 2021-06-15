@@ -109,11 +109,13 @@ public class BoxFragment extends Fragment {
                     String answer = option.getOptionName();
                     ans.setAnswer(answer);
                     ans.setOption(option);
+                    ans.setFlag(1);
                     //Log.i("111","answer="+answer);
                     //Log.i("333","answer="+ans.getAnswer());
                 } else {
                     String answer = "There is no more choices in the conch";
                     ans.setAnswer(answer);
+                    ans.setFlag(0);
                     //Log.i("222","answer="+answer);
                 }
             }
@@ -143,7 +145,7 @@ public class BoxFragment extends Fragment {
         builder.setPositiveButton("OK!", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (!ans.isNull()) {
+                if (ans.getFlag()==1) {
                     Option option = ans.getOption();
                     option.setTimes(1);
                     Calendar date = Calendar.getInstance();

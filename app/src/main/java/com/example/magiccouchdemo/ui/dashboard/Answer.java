@@ -5,6 +5,7 @@ import com.example.magiccouchdemo.dataBase.Option;
 public class Answer {
     String answer;
     Option option;
+    int flag;
 
     public Answer(){
         this.answer = null;
@@ -12,6 +13,7 @@ public class Answer {
     public Answer(String answer, Option option) {
         this.answer = answer;
         this.option = option;
+        this.flag = 0;
     }
 
     public String getAnswer() {
@@ -30,7 +32,11 @@ public class Answer {
         this.option = option;
     }
 
-    public boolean isNull(){
-        return (this.answer==null);
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
     }
 }
