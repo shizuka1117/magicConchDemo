@@ -144,7 +144,7 @@ public class HomeResultFragment extends Fragment {
                     theme.setT_id(model.getId());
                     themeViewModel.updateThemes(theme);
                 }
-                themeViewModel.getMaxThemeID();
+                themeViewModel.getMaxShortThemeID();
                 Log.d("maxID", maxThemeID.getValue()+"");
                 for(int i = 0; i<model.getmList().size(); i++){
                     Option option = model.getmList().get(i);
@@ -166,53 +166,4 @@ public class HomeResultFragment extends Fragment {
         return binding.getRoot();
     }
 
-    public class MyThread extends Thread{
-
-        public MyThread(String name){
-            super(name);
-        }
-
-        @Override
-        public void run() {
-            themeViewModel.getMaxThemeID().observe(getViewLifecycleOwner(), new Observer<Integer>() {
-                @Override
-                public void onChanged(Integer integer) {
-                    maxThemeID.postValue(integer);
-                    Lock lock = new Lock() {
-                        @Override
-                        public void lock() {
-
-                        }
-
-                        @Override
-                        public void lockInterruptibly() throws InterruptedException {
-
-                        }
-
-                        @Override
-                        public boolean tryLock() {
-                            return false;
-                        }
-
-                        @Override
-                        public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
-                            return false;
-                        }
-
-                        @Override
-                        public void unlock() {
-
-                        }
-
-                        @Override
-                        public Condition newCondition() {
-                            return null;
-                        }
-                    };
-                    MyThread.this.notify();
-                    lock.unlock();
-                }
-            });
-        }
-    }
 }

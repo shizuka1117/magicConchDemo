@@ -13,7 +13,8 @@ public class ThemeViewModel extends AndroidViewModel {
     private ThemeDao themeDao;
     private LiveData<List<Theme>> allLongTheme;
     private LiveData<List<Theme>> allShortTheme;
-    private LiveData<Integer> maxThemeID;
+    private LiveData<Integer> maxShortThemeID;
+    private LiveData<Integer> maxLongThemeID;
 
 
     public ThemeViewModel(@NonNull Application application) {
@@ -22,7 +23,8 @@ public class ThemeViewModel extends AndroidViewModel {
         themeDao = themeDatabase.getThemeDao();
         allLongTheme = themeDao.getAllLongTermDecision();
         allShortTheme = themeDao.getAllShortTermDecision();
-        maxThemeID = themeDao.getMaxThemeID();
+        maxShortThemeID = themeDao.getMaxShortThemeID();
+        maxLongThemeID = themeDao.getMaxLongThemeID();
     }
 
     public void insertThemes(Theme... themes){
@@ -51,8 +53,12 @@ public class ThemeViewModel extends AndroidViewModel {
 
     public LiveData<Theme> getTheme(int id){ return themeDao.getTheme(id);}
 
-    public LiveData<Integer> getMaxThemeID(){
-        return maxThemeID;
+    public LiveData<Integer> getMaxLongThemeID(){
+        return maxLongThemeID;
+    }
+
+    public LiveData<Integer> getMaxShortThemeID(){
+        return maxShortThemeID;
     }
 
 

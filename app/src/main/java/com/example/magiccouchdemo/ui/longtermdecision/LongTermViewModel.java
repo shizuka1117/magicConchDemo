@@ -5,16 +5,31 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.magiccouchdemo.dataBase.Option;
+import com.example.magiccouchdemo.dataBase.Theme;
 
 public class LongTermViewModel extends ViewModel {
 
-    public ObservableArrayList<Option> mList = new ObservableArrayList<>();
-    private MutableLiveData<String> decName;
-    //private MutableLiveData<String> tag;
+    public ObservableArrayList<Option> longList = new ObservableArrayList<>();
+    private MutableLiveData<Integer> id = new MutableLiveData<>(0);
+    private MutableLiveData<String> decName = new MutableLiveData<>();
+    private Theme theme = new Theme(null, "", "long");
+    private MutableLiveData<Integer> maxThemeID = new MutableLiveData<Integer>();
     private String result;
 
-    public LongTermViewModel() {
+    public Theme getTheme() {
+        return theme;
+    }
 
+    public void setTheme(Theme theme) {
+        this.theme = theme;
+    }
+
+    public Integer getMaxThemeID() {
+        return maxThemeID.getValue();
+    }
+
+    public void setMaxThemeID(Integer maxThemeID) {
+        this.maxThemeID.setValue(maxThemeID);
     }
 
     public String getResult() {
@@ -25,28 +40,34 @@ public class LongTermViewModel extends ViewModel {
         this.result = result;
     }
 
-    public ObservableArrayList<Option> getmList() {
-        return mList;
+    public int getId() {
+        return id.getValue();
     }
 
-    public void setmList(ObservableArrayList<Option> mList) {
-        this.mList = mList;
+    public void setId(Integer id) {
+        this.id.setValue(id);
+    }
+
+    public ObservableArrayList<Option> getLongList() {
+        return longList;
+    }
+
+    public void setLongList(ObservableArrayList<Option> longList) {
+        this.longList = longList;
     }
 
     public MutableLiveData<String> getDecName() {
         return decName;
     }
-    /*
-    public MutableLiveData<String> getTag() {
-        return tag;
+
+    public void setDecName(String decName) {
+        this.decName.setValue(decName);
     }
 
-    public void setTag(MutableLiveData<String> tag) {
-        this.tag = tag;
-    }
-*/
-    public void setDecName(MutableLiveData<String> decName) {
-        this.decName = decName;
+    public void clear(){
+        this.setLongList(new ObservableArrayList<Option>());
+        this.setDecName("");
+        this.setId(0);
     }
 
 }

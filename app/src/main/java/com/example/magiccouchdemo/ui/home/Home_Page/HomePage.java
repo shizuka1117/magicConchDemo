@@ -86,7 +86,7 @@ public class HomePage extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
-        themeViewModel.getMaxThemeID().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+        themeViewModel.getMaxShortThemeID().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
                 homeViewModel.setMaxThemeID(integer);

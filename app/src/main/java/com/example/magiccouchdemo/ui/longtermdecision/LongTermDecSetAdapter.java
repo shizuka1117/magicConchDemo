@@ -33,8 +33,8 @@ public class LongTermDecSetAdapter extends BaseBindingAdapter<Option, LongOption
     }
 
     @Override
-    protected void onBindItem(LongOptionItemBinding binding, Option item) {
-        binding.setOption(item);
+    protected void onBindItem(LongOptionItemBinding binding, Option option) {
+        binding.setLongoption(option);
         binding.executePendingBindings();
     }
 
@@ -54,7 +54,7 @@ public class LongTermDecSetAdapter extends BaseBindingAdapter<Option, LongOption
         binding.delete1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int position = items.indexOf(binding.getOption());
+                int position = items.indexOf(binding.getLongoption());
                 items.remove(position);
                 //删除动画
                 notifyItemRemoved(position);

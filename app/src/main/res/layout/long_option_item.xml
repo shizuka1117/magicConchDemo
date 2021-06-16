@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="option"
+            name="longoption"
             type="com.example.magiccouchdemo.dataBase.Option" />
     </data>
     <androidx.cardview.widget.CardView
@@ -21,14 +21,14 @@
             app:layout_constraintTop_toBottomOf="@+id/imageButton">
 
             <EditText
-                android:id="@+id/name1"
+                android:id="@+id/long_option_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:maxLines="1"
-                android:text="@={option.optionName}"
+                android:text="@={longoption.optionName}"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.517"
-                app:layout_constraintStart_toEndOf="@+id/name1"
+                app:layout_constraintStart_toEndOf="@+id/long_option_name"
                 app:srcCompat="@drawable/ic_baseline_delete" />
 
 

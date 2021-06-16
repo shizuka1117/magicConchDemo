@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="model"
-            type="com.example.magiccouchdemo.ui.home.HomeViewModel" />
+            name="longmodel"
+            type="com.example.magiccouchdemo.ui.longtermdecision.LongTermViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="602dp"
-        tools:context=".ui.dashboard.HomeSetFragment">
+        tools:context=".ui.longtermdecision.LongTermDecSetFragment">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/nextButton1"
@@ -75,14 +75,14 @@
             app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
         <EditText
-            android:id="@+id/dec_title"
+            android:id="@+id/long_term_dec_title"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:ems="10"
             android:hint="例：今天吃什么"
             android:inputType="textPersonName"
-            android:text="@={model.decName}"
+            android:text="@={longmodel.decName}"
             app:layout_constraintBottom_toBottomOf="@+id/textView20"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView20"
