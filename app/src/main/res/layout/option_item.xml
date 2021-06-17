@@ -35,7 +35,7 @@
                 android:id="@+id/value"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="44dp"
                 android:ems="2"
                 android:foregroundGravity="center_vertical|center|center_horizontal"
                 android:gravity="center|center_horizontal|center_vertical"
@@ -44,7 +44,7 @@
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@+id/name"
-                app:layout_constraintStart_toEndOf="@+id/add_value"
+                app:layout_constraintStart_toEndOf="@+id/name"
                 app:layout_constraintTop_toTopOf="@+id/name"
                 app:layout_constraintVertical_bias="1.0" />
 
@@ -52,21 +52,22 @@
                 android:id="@+id/delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:backgroundTint="#EDECEC"
                 app:layout_constraintBottom_toBottomOf="@+id/value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/value"
                 app:layout_constraintTop_toTopOf="@+id/value"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/ic_baseline_delete" />
 
             <ImageButton
                 android:id="@+id/add_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="224dp"
                 android:backgroundTint="#EDECEC"
-                app:layout_constraintStart_toEndOf="@+id/name"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/keyboard_arrow_up_24" />
 
@@ -75,9 +76,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#EDECEC"
-                app:layout_constraintEnd_toStartOf="@+id/value"
-                app:layout_constraintHorizontal_bias="0.631"
-                app:layout_constraintStart_toEndOf="@+id/name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/add_value"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/add_value"
                 app:layout_constraintTop_toBottomOf="@+id/add_value"
                 app:srcCompat="@drawable/keyboard_arrow_down_24" />
 

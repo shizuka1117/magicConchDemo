@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/restFragment"
         android:name="com.example.magiccouchdemo.ui.dashboard.RestFragment"
-        android:label="RestFragment" />
+        android:label="待办事项" />
     <fragment
         android:id="@+id/longTermFragment"
         android:name="com.example.magiccouchdemo.ui.dashboard.LongTermDecisionFragment"
