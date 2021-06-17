@@ -1,6 +1,8 @@
 package com.example.magiccouchdemo.ui.home.Home_Page;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -9,10 +11,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.widget.MenuPopupWindow;
 import androidx.cardview.widget.CardView;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ObservableArrayList;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -24,7 +24,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.util.SparseBooleanArray;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,22 +31,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.magiccouchdemo.R;
-import com.example.magiccouchdemo.dataBase.Option;
 import com.example.magiccouchdemo.dataBase.OptionViewModel;
 import com.example.magiccouchdemo.dataBase.Theme;
 import com.example.magiccouchdemo.dataBase.ThemeViewModel;
 import com.example.magiccouchdemo.databinding.RecycleViewList1Binding;
-import com.example.magiccouchdemo.ui.dashboard.LongTermDecisionAdapter;
 import com.example.magiccouchdemo.ui.home.HomeViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -66,19 +60,25 @@ public class HomePage extends Fragment {
         // Required empty public constructor
     }
 
-    public void initDecisionList() {
+    public void init() {
+        homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
         themeViewModel = ViewModelProviders.of(this.getActivity()).get(ThemeViewModel.class);
         optionViewModel = ViewModelProviders.of(this.getActivity()).get(OptionViewModel.class);
-        /*
-        Theme it1 = new Theme("Eat", "What to eat tonight?", "short");
-        Theme it2 = new Theme("Play", "Where to go hiking?", "short");
-        for (int i = 0; i < 5; i++) {
-            themeViewModel.insertThemes(it1, it2);
-        }
-         */
         //themeViewModel.deleteAllThemes();
-        //optionViewModel.deleteAllOptions();
-        homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
+
+        /**
+         * 初始化
+         */
+        /*
+        Theme it1 = new Theme("吃吃吃", "今晚吃啥？", "short");
+        Theme it2 = new Theme("乐乐乐", "聚餐去哪里？", "short");
+        Theme it3 = new Theme("学习","先复习哪门科目？","short");
+        Theme it4 = new Theme(null,"今天要不要喝奶茶？","short");
+        Theme it5 = new Theme("乐乐乐","周末去哪里玩？","short");
+        Theme it6 = new Theme("购物","买什么牌子的手机？","short");
+
+        themeViewModel.insertThemes(it1, it2, it3, it4, it5,it6);
+        */
         themeViewModel.getAllShortTermThemeLive().observe(this.getViewLifecycleOwner(), new Observer<List<Theme>>() {
             @Override
             public void onChanged(List<Theme> themes) {
@@ -111,9 +111,8 @@ public class HomePage extends Fragment {
 
         Rv = binding.recycleView1;
 
-        //初始化decision_list
-        initDecisionList();
-
+        //初始化
+        init();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         Rv.setLayoutManager(layoutManager);
@@ -139,8 +138,7 @@ public class HomePage extends Fragment {
                 Log.d("themeID", theme.getT_id()+"");
                 NavController controller = Navigation.findNavController(getView());
                 controller.navigate(R.id.action_homeFragment_to_homeSetFragment);
-                Toast.makeText(getActivity(), "onClick" + view.getCardBackgroundColor(), Toast.LENGTH_SHORT).show();
-                //跳转到对应的编辑界面！
+                //跳转到对应的编辑界面
             }
 
             //监听长按,长按选择编辑/删除
@@ -161,6 +159,15 @@ public class HomePage extends Fragment {
                             case R.id.edit:
                                 //跳转到编辑界面
                                 Toast.makeText(getActivity(), "edit" + position, Toast.LENGTH_SHORT).show();
+                                homeViewModel.clear();
+                                Theme theme = adapter.getDataList().get(position);
+                                homeViewModel.setDecName(theme.getName());
+                                homeViewModel.setTag(theme.getTag());
+                                homeViewModel.setId(theme.getT_id());
+                                Log.d("themeID", theme.getT_id()+"");
+                                NavController controller = Navigation.findNavController(getView());
+                                controller.navigate(R.id.action_homeFragment_to_homeSetFragment);
+                                //跳转到对应的编辑界面
                                 break;
                             case R.id.delete:
                                 //数据库中的删除，调用delete
@@ -185,7 +192,7 @@ public class HomePage extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.home_menu, menu);
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setMaxWidth(500);
+        searchView.setMaxWidth(600);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -217,31 +224,10 @@ public class HomePage extends Fragment {
 
     }
 
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.tag_menu:
-                Log.d("RecycleViewList1", "点击了menu1");
-                break;
-            case R.id.search:
-                Log.d("RecycleViewList1", "点击了搜索");
-                //监听搜索事件
-            default:
-                break;
-        }
-        return true;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-    }
-
-
-    private void edit(){
-
     }
 
     private void delete(int position) {
@@ -268,6 +254,7 @@ public class HomePage extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(msg);
         builder.setTitle("提示");
+
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -285,6 +272,7 @@ public class HomePage extends Fragment {
                 dialog.dismiss();
             }
         });
+
         builder.create().show();
     }
 }

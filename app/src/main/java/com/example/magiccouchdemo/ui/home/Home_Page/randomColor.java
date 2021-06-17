@@ -34,7 +34,8 @@ public class randomColor {
 
         /*Purple*/
         colors.add("#eaeafb");//Lavender
-        colors.add("#eeeaf8");
+        colors.add("#E6E6FA");
+
 
     }
 
