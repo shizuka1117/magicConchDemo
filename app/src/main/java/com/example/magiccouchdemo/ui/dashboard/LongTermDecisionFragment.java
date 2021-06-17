@@ -73,6 +73,7 @@ public class LongTermDecisionFragment extends Fragment {
         //Theme item3 = new Theme(null,"和ta在一起要做的事","long");
         //Theme item4 = new Theme(null,"给自己的奖励吃吃吃","long");
         //Theme item5 = new Theme(null,"给自己的奖励吃吃吃111","long");
+        Theme item0 = new Theme(null,"在这里记录你想在一段时间内做的事","long");
 
 
         //database交互
@@ -90,6 +91,9 @@ public class LongTermDecisionFragment extends Fragment {
             @Override
             public void onChanged(List<Theme> themes) {
                 myAdapter.setDataList(themes);
+                if (myAdapter.getItemCount()==0){
+                    themeViewModel.insertThemes(item0);
+                }
                 myAdapter.notifyDataSetChanged();
             }
         });

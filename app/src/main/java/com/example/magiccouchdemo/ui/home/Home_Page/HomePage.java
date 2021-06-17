@@ -79,10 +79,15 @@ public class HomePage extends Fragment {
 
         themeViewModel.insertThemes(it1, it2, it3, it4, it5,it6);
         */
+        //样例提示主题
+        Theme it0 = new Theme("这里是标签","在这里记录你经常用的决策","short");
         themeViewModel.getAllShortTermThemeLive().observe(this.getViewLifecycleOwner(), new Observer<List<Theme>>() {
             @Override
             public void onChanged(List<Theme> themes) {
                 adapter.setDataList(themes);
+                if (adapter.getItemCount()==0){
+                    themeViewModel.insertThemes(it0);
+                }
                 adapter.notifyDataSetChanged();
             }
         });

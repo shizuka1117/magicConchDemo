@@ -96,7 +96,6 @@ public class LongTermDecisionAdapter extends RecyclerView.Adapter<LongTermDecisi
                 controller.navigate(R.id.action_longTermFragment_to_boxFragment,bundle);
             }
         });
-        Log.d("View Count", "11111111");
         return holder;
     }
 
