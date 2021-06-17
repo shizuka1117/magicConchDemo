@@ -150,7 +150,7 @@ public class HomePage extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onItemLongClick(CardView view, int position) {
-                Toast.makeText(getActivity(), "onLongClick" + position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "onLongClick" + position, Toast.LENGTH_SHORT).show();
                 PopupMenu popupMenu = new PopupMenu(getContext(), view);
                 popupMenu.getMenuInflater().inflate(R.menu.window_menu, popupMenu.getMenu());
                 //设置PopupMenu在指定位置弹出
@@ -161,19 +161,6 @@ public class HomePage extends Fragment {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.edit:
-                                //跳转到编辑界面
-                                Toast.makeText(getActivity(), "edit" + position, Toast.LENGTH_SHORT).show();
-                                homeViewModel.clear();
-                                Theme theme = adapter.getDataList().get(position);
-                                homeViewModel.setDecName(theme.getName());
-                                homeViewModel.setTag(theme.getTag());
-                                homeViewModel.setId(theme.getT_id());
-                                Log.d("themeID", theme.getT_id()+"");
-                                NavController controller = Navigation.findNavController(getView());
-                                controller.navigate(R.id.action_homeFragment_to_homeSetFragment);
-                                //跳转到对应的编辑界面
-                                break;
                             case R.id.delete:
                                 //数据库中的删除，调用delete
                                 delete(position);

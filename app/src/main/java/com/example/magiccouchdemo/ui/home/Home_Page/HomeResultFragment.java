@@ -90,41 +90,6 @@ public class HomeResultFragment extends Fragment {
         gifDrawable.start();
         gifDrawable.setLoopCount(1);//设置播放一次
 
-
-        /**
-         * Handler 定义处理事项
-         */
-        Handler handler = new Handler() {
-            public void handleMessage(Message msg) {
-                if (msg.what == 1) {
-                    textView.setText(model.getResult());
-                }
-                super.handleMessage(msg);
-            };
-        };
-
-        /**
-         * 定时器设置
-         */
-        Timer timer =  new Timer();
-        TimerTask timertask = new TimerTask() {
-            @Override
-            public void run() {
-                /**
-                 *   这个run 的使用就是开启了一个新的线程，
-                 *   在这个子线程中是无法更新UI 的，比如更新TextView 的显示内容
-                 */
-                Message message = new Message();
-                //message 定义，是为了给Handler向UI发送信息作为媒介
-                message.what = 1;
-                handler.sendMessage(message);
-                //Handler 发送message。这里发送回去调用handler类中的回掉函数：handlerMessage()）
-            }
-        };
-
-        timer.schedule(timertask,1000*1);
-
-
         binding.returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

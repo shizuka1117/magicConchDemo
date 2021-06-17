@@ -47,10 +47,6 @@ public class LongTermDecisionAdapter extends RecyclerView.Adapter<LongTermDecisi
         CardView listView;
         TextView event_name;
 
-        /**
-         * 设置CardView随机颜色,试了一下，好丑....再改
-         */
-
         randomColor rand = new randomColor();//随机颜色类
 
         Random random = new Random();//随机类
@@ -63,7 +59,6 @@ public class LongTermDecisionAdapter extends RecyclerView.Adapter<LongTermDecisi
         public ViewHolder(View itemView) {
             super(itemView);
 
-            //setBackgroundcolor 无效？但是不能直接setBackgroundcolor(int color)
             listView = (CardView) itemView;
             listView.setCardBackgroundColor(Color.parseColor(ranColor));
 

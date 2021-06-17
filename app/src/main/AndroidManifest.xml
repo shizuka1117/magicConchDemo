@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".RegisterActivity"
+            android:label="注册账号">
+
+        </activity>
         <activity
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation"></activity>

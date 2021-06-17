@@ -59,7 +59,7 @@
     <fragment
         android:id="@+id/longTermDecSetFragment"
         android:name="com.example.magiccouchdemo.ui.longtermdecision.LongTermDecSetFragment"
-        android:label="LongTermDecSetFragment" >
+        android:label="编辑选项" >
         <action
             android:id="@+id/action_longTermDecSetFragment_to_longTermFragment"
             app:destination="@id/longTermFragment" />

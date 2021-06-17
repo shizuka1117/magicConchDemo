@@ -66,12 +66,12 @@ public class BoxFragment extends Fragment {
         //为ListView绑定适配器
         myAdapter = new BoxHistoryAdapter();
         Rv.setAdapter(myAdapter);
-
+        /*
         Option item1 = new Option("一起去济南吧", 1090);
         Option item2 = new Option("苏州gogogo", 1090);
         Option item3 = new Option("去大理看云海", 1090);
         Option item4 = new Option("西藏西藏！", 1);
-
+        */
         optionViewModel = ViewModelProviders.of(this.getActivity()).get(OptionViewModel.class);
         //optionViewModel.deleteAllOptions();
         //optionViewModel.insertOptions(item1, item2, item3, item4);
