@@ -123,7 +123,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_marginStart="1dp"
             android:layout_marginEnd="10dp"
             android:ems="10"
-            android:hint="例：今天吃什么"
+            android:hint="例：生活"
             android:inputType="textPersonName"
             android:text="@={model.tag}"
             app:layout_constraintBottom_toBottomOf="@+id/textView19"
