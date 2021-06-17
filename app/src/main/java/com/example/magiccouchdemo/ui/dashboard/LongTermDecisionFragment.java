@@ -92,7 +92,7 @@ public class LongTermDecisionFragment extends Fragment {
             public void onChanged(List<Theme> themes) {
                 myAdapter.setDataList(themes);
                 if (myAdapter.getItemCount()==0){
-                    themeViewModel.insertThemes(item0,item0);
+                    themeViewModel.insertThemes(item0);
                 }
                 myAdapter.notifyDataSetChanged();
             }

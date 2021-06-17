@@ -86,7 +86,7 @@ public class HomePage extends Fragment {
             public void onChanged(List<Theme> themes) {
                 adapter.setDataList(themes);
                 if (adapter.getItemCount()==0){
-                    themeViewModel.insertThemes(it0,it0);
+                    themeViewModel.insertThemes(it0);
                 }
                 adapter.notifyDataSetChanged();
             }
