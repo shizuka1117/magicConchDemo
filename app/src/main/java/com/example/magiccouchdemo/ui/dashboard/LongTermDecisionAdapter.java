@@ -4,10 +4,13 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,11 +39,22 @@ public class LongTermDecisionAdapter extends RecyclerView.Adapter<LongTermDecisi
     public void setDataList(List<Theme> dataList) {
         this.dataList = dataList;
     }
+    public List<Theme> getDataList(){ return dataList; }
 
     /*public LongTermDecisionAdapter(List<decisionList> dataList){
         this.dataList=dataList;
         Log.d("execute","111");
     }*/
+
+    public interface  onItemClickListener{
+        void onItemLongClick(CardView view, int position);
+    }
+    //定义了当长按视图中的项目时调用的回调函数的接口。
+    private LongTermDecisionAdapter.onItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(LongTermDecisionAdapter.onItemClickListener onItemClickListener){
+        this.onItemClickListener=onItemClickListener;
+    }
 
     //内部ViewHolder类
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -91,6 +105,18 @@ public class LongTermDecisionAdapter extends RecyclerView.Adapter<LongTermDecisi
                 controller.navigate(R.id.action_longTermFragment_to_boxFragment,bundle);
             }
         });
+        if(onItemClickListener!=null){
+            holder.listView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int layoutPos=holder.getLayoutPosition();
+                    onItemClickListener.onItemLongClick(holder.listView,layoutPos);
+                    return true;
+                }
+            });
+        }
+
+
         return holder;
     }
 

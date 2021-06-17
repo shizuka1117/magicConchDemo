@@ -1,12 +1,22 @@
 package com.example.magiccouchdemo.ui.dashboard;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -21,6 +31,7 @@ import com.example.magiccouchdemo.R;
 import com.example.magiccouchdemo.dataBase.Theme;
 import com.example.magiccouchdemo.dataBase.ThemeViewModel;
 import com.example.magiccouchdemo.ui.home.Home_Page.decisionList;
+import com.example.magiccouchdemo.ui.home.Home_Page.decisionRecycleAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -98,9 +109,88 @@ public class LongTermDecisionFragment extends Fragment {
             }
         });
 
+        setOnListViewClickListener();//监听点击事件
 
         return view;
 
+    }
+
+    private void setOnListViewClickListener() {
+        myAdapter.setOnItemClickListener(new LongTermDecisionAdapter.onItemClickListener() {
+            //监听长按,长按选择编辑/删除
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onItemLongClick(CardView view, int position) {
+                //Toast.makeText(getActivity(), "onLongClick" + position, Toast.LENGTH_SHORT).show();
+                PopupMenu popupMenu = new PopupMenu(getContext(), view);
+                popupMenu.getMenuInflater().inflate(R.menu.window_menu, popupMenu.getMenu());
+                //设置PopupMenu在指定位置弹出
+                popupMenu.setGravity(Gravity.END);
+
+                //弹出式菜单的菜单项点击事件
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.delete:
+                                //数据库中的删除，调用delete
+                                delete(position);
+                        }
+                        return false;
+                    }
+                });
+
+                popupMenu.show();
+            }
+
+        });
+
+    }
+
+    private void delete(int position) {
+        if(themeViewModel.getAllLongTermThemeLive()==null){
+            Toast.makeText(getActivity(), "您还没有选中任何数据！", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        showInformation("确认删除吗？",position);
+    }
+
+    /**
+     * 确认删除
+     */
+    private void beSureDelete(int position) {
+        Theme theme = myAdapter.getDataList().get(position);
+        themeViewModel.deleteThemes(theme);
+        myAdapter.getDataList().remove(theme);
+        myAdapter.notifyItemRemoved(position);
+        myAdapter.notifyDataSetChanged();
+        Toast.makeText(getActivity(), "删除成功", Toast.LENGTH_SHORT).show();
+    }
+
+    private void showInformation(String msg, int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(msg);
+        builder.setTitle("提示");
+
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                // 执行操作
+                //Toast.makeText(getActivity(), "你点击确定了", Toast.LENGTH_SHORT).show();
+                //确认删除，调用buSureDelete
+                beSureDelete(position);
+            }
+        });
+
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.create().show();
     }
 
 }
