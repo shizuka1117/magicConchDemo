@@ -49,6 +49,7 @@ public class HomeSetFragment extends Fragment {
 
         adapter = new OptionAdapter(getContext(), optionViewModel);
 
+
         optionViewModel.getOptionsByParent(homeViewModel.getId()).observe(this.getViewLifecycleOwner(), new Observer<List<Option>>() {
             @Override
             public void onChanged(List<Option> options) {
@@ -91,6 +92,8 @@ public class HomeSetFragment extends Fragment {
                 binding.recyclerView.scrollToPosition(adapter.getItemCount()-1);
             }
         });
+        if(adapter.getItemCount()==0)
+            adapter.addData(0, new Option());
         return binding.getRoot();
     }
 
